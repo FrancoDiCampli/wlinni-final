@@ -24,6 +24,9 @@
 .white {
   background-color: white;
 }
+.default {
+  background-color: $default;
+}
 
 .primary-text {
   color: $primary;
@@ -49,13 +52,26 @@
 .white-text {
   color: white;
 }
+.default-text {
+  color: $default;
+}
+
+.primary-border {
+  border-color: $primary;
+}
+.secondary-border {
+  border-color: $secondary;
+}
+.tertiary-border {
+  border-color: $tertiary;
+}
 
 $sizes: (
   "xs": 0px,
   "sm": 576px,
   "md": 768px,
   "lg": 992px,
-  "xl": 1200px
+  "xl": 1200px,
 );
 
 @each $name, $size in $sizes {

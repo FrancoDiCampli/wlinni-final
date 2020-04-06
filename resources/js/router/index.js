@@ -21,6 +21,17 @@ import Inmuebles from "../views/inmuebles/Inmuebles";
 // NOTIFICACIONES
 import Notificaciones from "../views/notificaciones/Notificaciones";
 
+// AMC
+import AMC1 from "../views/amc/AMC1";
+import AMC2 from "../views/amc/AMC2";
+import AMC4 from "../views/amc/AMC3";
+
+// Brocker
+import Brocker from "../views/brocker/Brocker";
+
+// Agente
+import Agente from "../views/agentes/Agente";
+
 Vue.use(Router);
 
 export default new Router({
@@ -29,31 +40,36 @@ export default new Router({
         {
             path: "/",
             name: "home",
-            component: Home
+            component: Home,
+        },
+        {
+            path: "/test",
+            name: "test",
+            component: AMC2,
         },
 
         // AUTH
         {
             path: "/login",
             name: "login",
-            component: Login
+            component: Login,
         },
         {
             path: "/register",
             name: "register",
-            component: Register
+            component: Register,
         },
         {
             path: "/register/successful",
             name: "register_successful",
-            component: RegisterSuccessful
+            component: RegisterSuccessful,
         },
 
         // PRECIOS
         {
             path: "/precios",
             name: "precios",
-            component: Precios
+            component: Precios,
         },
 
         // PUBLICACIONES
@@ -61,31 +77,62 @@ export default new Router({
         {
             path: "/publicaciones",
             name: "publicaciones",
-            component: Publicaciones
+            component: Publicaciones,
         },
         {
             path: "/publicaciones/nueva",
             name: "publicaciones_nueva",
-            component: NuevaPublicacion
+            component: NuevaPublicacion,
         },
         {
             path: "/publicaciones/detalle",
             name: "publicaciones_detalle",
-            component: DetallePublicacion
+            component: DetallePublicacion,
         },
 
         // INMUEBLES
         {
             path: "/inmuebles",
             name: "inmuebles",
-            component: Inmuebles
+            component: Inmuebles,
         },
 
         // NOTIFICACIONES
         {
             path: "/notificaciones",
             name: "notificaciones",
-            component: Notificaciones
-        }
-    ]
+            component: Notificaciones,
+        },
+
+        // AMC
+        {
+            path: "/amc/1",
+            name: "amc_1",
+            component: AMC1,
+        },
+        {
+            path: "/amc/2",
+            name: "amc_2",
+            component: AMC2,
+        },
+        {
+            path: "/amc/3",
+            name: "amc_3",
+            component: AMC4,
+        },
+
+        // Brocker
+        {
+            path: "/perfil/brocker",
+            name: "perfil_brocker",
+            component: Brocker,
+        },
+
+        // Agente
+        {
+            path: "/agente",
+            name: "agente",
+            component: Agente,
+        },
+    ],
 });

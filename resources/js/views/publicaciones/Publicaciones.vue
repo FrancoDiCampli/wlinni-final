@@ -12,12 +12,14 @@
 
     <div>
         <div class="publicaciones-container">
-            <div class="flex flex-row justify-around gap-8">
+            <div class="flex flex-row justify-around">
                 <div class="w-3/12 hidden lg:block">
                     <div>
                         <w-card :shadow="false">
                             <template slot="header">
-                                <p class="caption bold white-text">ORDENAR POR</p>
+                                <p class="caption bold white-text">
+                                    ORDENAR POR
+                                </p>
                             </template>
 
                             <FiltroPublicacion></FiltroPublicacion>
@@ -28,7 +30,8 @@
                                 :fullwidth="true"
                                 color="secondary"
                                 @click="$router.push('publicaciones/nueva')"
-                            >nueva publicación</w-btn>
+                                >nueva publicación</w-btn
+                            >
                         </w-card>
                     </div>
                 </div>
@@ -42,36 +45,49 @@
                                 color="secondary"
                                 :dark="true"
                                 @click="filtrar = false"
-                            >filtrar</w-btn>
+                                >filtrar</w-btn
+                            >
                         </div>
                     </div>
                 </div>
                 <div class="sm:w-full lg:w-9/12 px-6" v-else>
                     <w-card :shadow="false">
-                        <h1 class="subtitle bold lg:pl-3">Listado de Publicaciones</h1>
+                        <h1 class="subtitle bold lg:pl-3">
+                            Listado de Publicaciones
+                        </h1>
                         <br />
                         <w-btn
                             class="lg:hidden"
                             :dark="true"
                             color="secondary"
                             @click="filtrar = true"
-                        >filtrar</w-btn>
+                            >filtrar</w-btn
+                        >
                         <br />
                         <div class="flex flex-row justify-between flex-wrap">
-                            <div class="sm:w-full lg:w-1/3 p-3" v-for="(card, i) in cards" :key="i">
+                            <div
+                                class="sm:w-full lg:w-1/3 p-3"
+                                v-for="(card, i) in cards"
+                                :key="i"
+                            >
                                 <w-card
                                     :image="card.foto"
                                     imageHeight="200px"
                                     v-model="card.showForm"
                                     :activeContent="true"
                                 >
-                                    <template slot="header" v-if="!card.showForm">
-                                        <div class="flex flex-row justify-between">
+                                    <template
+                                        slot="header"
+                                        v-if="!card.showForm"
+                                    >
+                                        <div
+                                            class="flex flex-row justify-between"
+                                        >
                                             <div class="info-item">
                                                 <div
                                                     v-if="
                                                         card.state ==
-                                                            'Publicado'
+                                                        'Publicado'
                                                     "
                                                     class="dot success"
                                                 ></div>
@@ -87,11 +103,16 @@
                                                     "
                                                     class="dot secondary"
                                                 ></div>
-                                                <p class="white-text">{{ card.state }}</p>
+                                                <p class="white-text">
+                                                    {{ card.state }}
+                                                </p>
                                             </div>
                                             <div>
                                                 <w-btn :icon="true">
-                                                    <w-icon icon="edit-white" h="13px"></w-icon>
+                                                    <w-icon
+                                                        icon="edit-white"
+                                                        h="13px"
+                                                    ></w-icon>
                                                 </w-btn>
                                                 <w-btn
                                                     :icon="true"
@@ -99,13 +120,18 @@
                                                         card.showForm = true
                                                     "
                                                 >
-                                                    <w-icon icon="trash-white" h="13px"></w-icon>
+                                                    <w-icon
+                                                        icon="trash-white"
+                                                        h="13px"
+                                                    ></w-icon>
                                                 </w-btn>
                                             </div>
                                         </div>
                                     </template>
                                     <div v-if="card.showForm">
-                                        <p class="body bold white-text">Dar de Baja</p>
+                                        <p class="body bold white-text">
+                                            Dar de Baja
+                                        </p>
                                         <br />
                                         <form>
                                             <w-select
@@ -113,7 +139,7 @@
                                                 :options="[
                                                     'porque si',
                                                     'se me ocurrio',
-                                                    'asi nomas'
+                                                    'asi nomas',
                                                 ]"
                                                 v-model="card.form.motivo"
                                                 :dark="true"
@@ -146,10 +172,13 @@
                                             :fullwidth="true"
                                             :dark="true"
                                             @click="card.showForm = false"
-                                        >guardar</w-btn>
+                                            >guardar</w-btn
+                                        >
                                     </div>
                                     <div v-else>
-                                        <p class="caption bold tertiary-text">{{ card.title }}</p>
+                                        <p class="caption bold tertiary-text">
+                                            {{ card.title }}
+                                        </p>
                                         <br />
                                         <p>{{ card.body }}</p>
 
@@ -159,7 +188,8 @@
                                                 :small="true"
                                                 color="primary"
                                                 :dark="true"
-                                            >{{ card.boton }}</w-btn>
+                                                >{{ card.boton }}</w-btn
+                                            >
                                         </div>
                                     </div>
                                 </w-card>
@@ -189,7 +219,7 @@ export default {
                     title: "850 Pennsylvania",
                     body:
                         "Philiadelphia, Cherry Hill, DC205500 Modificación: 2020/09/05",
-                    form: {}
+                    form: {},
                 },
                 {
                     showForm: false,
@@ -199,7 +229,7 @@ export default {
                     body:
                         "Philiadelphia, Cherry Hill, DC205500 Modificación: 2020/09/05",
 
-                    form: {}
+                    form: {},
                 },
                 {
                     showForm: false,
@@ -208,7 +238,7 @@ export default {
                     title: "850 Pennsylvania",
                     body:
                         "Philiadelphia, Cherry Hill, DC205500 Modificación: 2020/09/05",
-                    form: {}
+                    form: {},
                 },
                 {
                     showForm: false,
@@ -218,7 +248,7 @@ export default {
                     body:
                         "Philiadelphia, Cherry Hill, DC205500 Modificación: 2020/09/05",
                     boton: "cerrar publicación",
-                    form: {}
+                    form: {},
                 },
                 {
                     showForm: false,
@@ -228,7 +258,7 @@ export default {
                     body:
                         "Philiadelphia, Cherry Hill, DC205500 Modificación: 2020/09/05",
                     boton: "cerrar publicación",
-                    form: {}
+                    form: {},
                 },
                 {
                     showForm: false,
@@ -238,7 +268,7 @@ export default {
                     body:
                         "Philiadelphia, Cherry Hill, DC205500 Modificación: 2020/09/05",
                     boton: "cerrar publicación",
-                    form: {}
+                    form: {},
                 },
                 {
                     showForm: false,
@@ -248,7 +278,7 @@ export default {
                     body:
                         "Philiadelphia, Cherry Hill, DC205500 Modificación: 2020/09/05",
                     boton: "cerrar publicación",
-                    form: {}
+                    form: {},
                 },
                 {
                     showForm: false,
@@ -258,7 +288,7 @@ export default {
                     body:
                         "Philiadelphia, Cherry Hill, DC205500 Modificación: 2020/09/05",
                     boton: "cerrar publicación",
-                    form: {}
+                    form: {},
                 },
                 {
                     showForm: false,
@@ -268,15 +298,15 @@ export default {
                     body:
                         "Philiadelphia, Cherry Hill, DC205500 Modificación: 2020/09/05",
                     boton: "cerrar publicación",
-                    form: {}
-                }
-            ]
+                    form: {},
+                },
+            ],
         };
     },
 
     components: {
-        FiltroPublicacion
-    }
+        FiltroPublicacion,
+    },
 };
 </script>
 
