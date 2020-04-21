@@ -59215,7 +59215,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _views_notificaciones_Notificaciones__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../views/notificaciones/Notificaciones */ "./resources/js/views/notificaciones/Notificaciones.vue");
 /* harmony import */ var _views_amc_AMC1__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../views/amc/AMC1 */ "./resources/js/views/amc/AMC1.vue");
 /* harmony import */ var _views_amc_AMC2__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../views/amc/AMC2 */ "./resources/js/views/amc/AMC2.vue");
-/* harmony import */ var _views_amc_AMC3__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../views/amc/AMC3 */ "./resources/js/views/amc/AMC3.vue");
+/* harmony import */ var _views_amc_AMC3__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../views/amc/AMC3 */ "./resources/js/views/amc/AMC3.vue");
 /* harmony import */ var _views_brocker_Brocker__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../views/brocker/Brocker */ "./resources/js/views/brocker/Brocker.vue");
 /* harmony import */ var _views_agentes_Agente__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../views/agentes/Agente */ "./resources/js/views/agentes/Agente.vue");
 
@@ -59307,7 +59307,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
   }, {
     path: "/amc/3",
     name: "amc_3",
-    component: _views_amc_AMC3__WEBPACK_IMPORTED_MODULE_17__["default"]
+    component: _views_amc_AMC3__WEBPACK_IMPORTED_MODULE_14__["default"]
   }, // Brocker
   {
     path: "/perfil/brocker",
