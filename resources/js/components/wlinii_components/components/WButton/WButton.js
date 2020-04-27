@@ -6,22 +6,23 @@ Vue.component("w-btn", {
   props: {
     dark: {
       type: Boolean,
-      default: false
+      default: false,
     },
     color: {
       type: String,
-      default: "secondary"
+      default: "secondary",
     },
     icon: Boolean,
     large: Boolean,
     small: Boolean,
     fullwidth: Boolean,
     rounded: Boolean,
-    outlined: Boolean
+    outlined: Boolean,
+    type: String,
   },
 
   template: `
-        <button :class="buttonClass" :style="buttonStyle" @click="$emit('click')">
+        <button :type="type" :class="buttonClass" :style="buttonStyle" @click="$emit('click')">
             <slot></slot>
         </button>
     `,
@@ -59,6 +60,6 @@ Vue.component("w-btn", {
           return `background-color: ${this.color}`;
         }
       }
-    }
-  }
+    },
+  },
 });

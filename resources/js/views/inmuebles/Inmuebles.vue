@@ -38,7 +38,7 @@
                 </div>
                 <div class="sm:w-full lg:w-9/12 px-6" v-else>
                     <w-card :shadow="false">
-                        <div class="flex flex-row justify-between flex-wrap">
+                        <div class="flex flex-row justify-between flex-wrap ml-3">
                             <div class="lg:pl-3">
                                 <h1 class="subtitle bold">Listado de Inmuebles</h1>
                             </div>
@@ -46,8 +46,16 @@
                                 <w-btn
                                     color="tertiary"
                                     :dark="true"
-                                    style=" margin: 0px !important;"
-                                >Búsqueda de mapa</w-btn>
+                                    style=" margin: 0px !important; display: flex;"
+                                    @click="$router.push('/inmuebles/mapa')"
+                                >
+                                    Búsqueda de mapa
+                                    <w-icon
+                                        style="margin: -6px 0px 0px 16px;"
+                                        icon="address-map"
+                                        h="26px"
+                                    ></w-icon>
+                                </w-btn>
                             </div>
                         </div>
                         <br />
@@ -113,6 +121,9 @@
                             </div>
                         </div>
                         <br />
+                        <div class="flex justify-center lg:justify-end">
+                            <w-pagination v-model="page" :length="4" @click="navigate()"></w-pagination>
+                        </div>
                     </w-card>
                 </div>
             </div>
@@ -122,10 +133,11 @@
 </template>
 
 <script>
-import FiltroInmueble from "./FiltroInmueble.vue";
+import FiltroInmueble from "../../components/inmuebles/FiltroInmueble";
 
 export default {
     data: () => ({
+        page: 1,
         filtrar: false,
         cards: [
             {

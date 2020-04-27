@@ -1,0 +1,117 @@
+<template>
+    <div class="map">
+        <gmap-map
+            ref="mapRef"
+            :center="center"
+            :zoom="12"
+            :options="mapOptions"
+            style="width: 100%; height: 600px;"
+        >
+            <gmap-marker
+                :key="index"
+                :icon="markerOptions"
+                v-for="(m, index) in markers"
+                :position="m.position"
+                @click="toggleInfoWindow(m, index)"
+            ></gmap-marker>
+            <gmap-info-window
+                :options="infoOptions"
+                :position="infoWindowPos"
+                :opened="infoWinOpen"
+                @closeclick="infoWinOpen = false"
+            >
+                <w-card :image="card.image" :shadow="false" class="map-card">
+                    <p class="bold" style="font-size: 11px;">Desde</p>
+                    <p class="body bold tertiary-text">S/ {{ card.precio }}</p>
+                    <p>{{ card.dir }}</p>
+                    <p class="bold">{{ card.description }}</p>
+                    <br />
+                    <div class="flex flex-row justify-between flex-wrap">
+                        <p>{{ card.entrega }}</p>
+                        <p>{{ card.condicion }}</p>
+                    </div>
+                    <w-btn :fullwidth="true" :dark="true" :rounded="true">CONTACTAR</w-btn>
+                    <br />
+                </w-card>
+            </gmap-info-window>
+        </gmap-map>
+    </div>
+</template>
+
+<script>
+export default {
+    props: {
+        markers: Array,
+        center: Object
+    },
+    data: () => ({
+        mapOptions: {
+            mapTypeControl: false,
+            streetViewControl: false
+        },
+        // iconos de los marcadores
+        markerOptions: {
+            url: "/images/lock-full.png",
+            size: { width: 21, height: 37, f: "px", b: "px" },
+            scaledSize: { width: 21, height: 37, f: "px", b: "px" }
+        },
+
+        infoWindowPos: {
+            lat: 0,
+            lng: 0
+        },
+        infoWinOpen: false,
+
+        infoOptions: {
+            pixelOffset: {
+                width: 0,
+                height: -35
+            }
+        },
+        card: {}
+    }),
+    methods: {
+        toggleInfoWindow: function(marker, idx) {
+            this.infoWindowPos = marker.position;
+            this.card = marker;
+            this.infoWinOpen = !this.infoWinOpen;
+        }
+    }
+};
+</script>
+
+<style lang="scss">
+.map {
+    .gm-style-iw-t {
+        .gm-style-iw,
+        .gm-style-iw-c {
+            padding: 0px !important;
+            border-radius: 15px !important;
+            max-height: none !important;
+            max-width: none !important;
+            .gm-style-iw-d {
+                overflow: hidden !important;
+                max-height: none !important;
+                max-width: none !important;
+            }
+            .gm-ui-hover-effect {
+                top: 0px !important;
+                right: 0px !important;
+                img {
+                    filter: invert(100%) opacity(100%);
+                    height: 28px;
+                    width: 28px;
+                }
+            }
+        }
+    }
+
+    .map-card {
+        width: 264px;
+        .card-text {
+            padding: 16px;
+            line-height: 1.6;
+        }
+    }
+}
+</style>

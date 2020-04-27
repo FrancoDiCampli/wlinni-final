@@ -5,291 +5,297 @@
         MB-AMC-1 (https://xd.adobe.com/view/b3577435-af55-46c5-4321-42f0fe99b140-c566/screen/63922af1-b1ae-4f85-89ee-8dc06a07e288/MB-AMC-1)
 
     -->
-    <div>
-        <div class="precios-container py-16">
+    <div class="amc-1">
+        <div class="amc-container">
             <w-card :shadow="false">
-                <div class="lg:w-11/12 mx-auto">
-                    <h1 class="subtitle-lg fan bold">
-                        Análisis de Mercado Comparativo (AMC)
-                    </h1>
-                    <p class="caption">Aplicación de analisis de precios</p>
-                    <p
-                        class="uppercase text-white primary px-2 my-5 lg:mt-5 w-1/3 lg:w-2/12 rounded-full text-center"
-                    >
-                        01 paso
-                    </p>
-                    <h1 class="subtitle-lg fan bold">Completar Formulario</h1>
-                    <div class="shadow w-full rounded-full default my-5">
-                        <div
-                            class="secondary leading-none text-center rounded-full p-2"
-                            style="width: 25%;"
-                        ></div>
+                <div>
+                    <p class="body subtitle-md bold ml-5">Análisis de Mercado Comparativo (AMC)</p>
+                    <p class="caption primary-text ml-5">Aplicación de analisis de precios</p>
+                    <w-btn
+                        :disabled="true"
+                        :rounded="true"
+                        :dark="true"
+                        :small="true"
+                        color="primary"
+                        class="step-btn"
+                    >01 PASO</w-btn>
+                    <p class="body subtitle-md bold ml-5">Completar Formulario</p>
+                    <div class="w-full px-5">
+                        <progress value="25" max="100" class="amc-progress"></progress>
                     </div>
                 </div>
-                <br />
+                <div class="px-5 my-5">
+                    <form @submit.prevent>
+                        <div class="flex flex-row justify-between flex-wrap">
+                            <div class="w-full md:w-1/2">
+                                <w-select
+                                    label="TIPO DE INMUEBLE"
+                                    placeholder="Lara Group"
+                                    :options="['a', 'b', 'c']"
+                                    v-model="form.tipoInmueble"
+                                ></w-select>
+                                <div class="w-full">
+                                    <p class="bold ml-4">TIPO DE OPERACIÓN</p>
+                                    <div class="flex flex-row justify-between">
+                                        <div class="w-1/2 px-2">
+                                            <w-btn
+                                                :fullwidth="true"
+                                                :rounded="true"
+                                                :color="form.operacion == 'VENTA' ? 'tertiary' : '#aaaaaa'"
+                                                :dark="true"
+                                                @click="form.operacion = 'VENTA'"
+                                            >VENTA</w-btn>
+                                        </div>
+                                        <div class="w-1/2 px-2">
+                                            <w-btn
+                                                :fullwidth="true"
+                                                :rounded="true"
+                                                :color="form.operacion == 'ALQUILER' ? 'tertiary' : '#aaaaaa'"
+                                                :dark="true"
+                                                @click="form.operacion = 'ALQUILER'"
+                                            >ALQUILER</w-btn>
+                                        </div>
+                                    </div>
+                                </div>
+                                <w-input
+                                    class="mt-10"
+                                    label="DIRECCIÓN"
+                                    placeholder="Av- Juan Velasco, Sector 2 lote 1"
+                                    v-model="form.direccion"
+                                ></w-input>
+                                <w-input
+                                    label="PRECIO"
+                                    placeholder="S/ 140.45"
+                                    v-model="form.precio"
+                                ></w-input>
+                            </div>
+                            <div class="w-full md:w-1/2 md:px-16">
+                                <w-input
+                                    label="ANTIGUEDAD"
+                                    placeholder="1 año"
+                                    v-model="form.antiguedad"
+                                ></w-input>
+                                <w-input
+                                    label="HABITACIONES"
+                                    placeholder="4 Habitaciones"
+                                    v-model="form.habitaciones"
+                                ></w-input>
+                                <w-input
+                                    label="CUARTO DE SERVICIO"
+                                    placeholder="SI"
+                                    v-model="form.cuartoServicio"
+                                ></w-input>
+                                <w-input label="BAÑOS" placeholder="4 baños" v-model="form.banios"></w-input>
+                                <w-input
+                                    label="COCHERAS"
+                                    placeholder="2 cocheras"
+                                    v-model="form.cocheras"
+                                ></w-input>
+                                <w-select
+                                    label="Zonificación"
+                                    placeholder="Residencial Multifamiliar"
+                                    :options="['a', 'b', 'c']"
+                                    v-model="form.zonificacion"
+                                ></w-select>
+                            </div>
+                            <div class="w-full md:w-1/2">
+                                <div class="w-full my-5">
+                                    <p class="bold ml-4">CALIDAD DE CONSTRUCCIÓN</p>
+                                    <div class="flex flex-row justify-center flex-wrap">
+                                        <div class="w-1/2 md:w-1/3 px-2">
+                                            <w-btn
+                                                :fullwidth="true"
+                                                :rounded="true"
+                                                :color="form.calidadConstruccion == 'EXCELENTE' ? 'tertiary' : '#aaaaaa'"
+                                                :dark="true"
+                                                @click="form.calidadConstruccion = 'EXCELENTE'"
+                                            >EXCELENTE</w-btn>
+                                        </div>
+                                        <div class="w-1/2 md:w-1/3 px-2">
+                                            <w-btn
+                                                :fullwidth="true"
+                                                :rounded="true"
+                                                :color="form.calidadConstruccion == 'BUENO' ? 'tertiary' : '#aaaaaa'"
+                                                :dark="true"
+                                                @click="form.calidadConstruccion = 'BUENO'"
+                                            >BUENO</w-btn>
+                                        </div>
+                                        <div class="w-1/2 md:w-1/3 px-2">
+                                            <w-btn
+                                                :fullwidth="true"
+                                                :rounded="true"
+                                                :color="form.calidadConstruccion == 'REGULAR' ? 'tertiary' : '#aaaaaa'"
+                                                :dark="true"
+                                                @click="form.calidadConstruccion = 'REGULAR'"
+                                            >REGULAR</w-btn>
+                                        </div>
+                                        <div class="w-1/2 md:w-1/3 px-2">
+                                            <w-btn
+                                                :fullwidth="true"
+                                                :rounded="true"
+                                                :color="form.calidadConstruccion == 'MALO' ? 'tertiary' : '#aaaaaa'"
+                                                :dark="true"
+                                                @click="form.calidadConstruccion = 'MALO'"
+                                            >MALO</w-btn>
+                                        </div>
+                                    </div>
+                                </div>
 
-                <!-- Comienza el formulario  -->
-                <div
-                    id="form"
-                    class="mt-5 lg:flex items-start lg:w-11/12 mx-auto"
-                >
-                    <form class="w-full lg:pr-10">
-                        <div class="form-group mt-5">
-                            <w-select
-                                label="TIPO DE INMUEBLE"
-                                placeholder="Pendientes"
-                                :options="['a', 'b', 'c']"
-                                v-model="form.tipoinmueble"
-                            ></w-select>
-                        </div>
-                        <div class="form-group">
-                            <label class="caption uppercase bold ml-5"
-                                >TIPO DE OPERACION</label
-                            >
-                            <div class="flex justify-between">
-                                <w-btn
-                                    class="full-width mr-2"
-                                    color="tertiary"
-                                    :rounded="true"
-                                    :dark="true"
-                                    @click.prevent="setOperation('venta')"
-                                    >venta</w-btn
-                                >
-                                <w-btn
-                                    class="full-width"
-                                    color="tertiary"
-                                    :rounded="true"
-                                    :dark="true"
-                                    @click.prevent="setOperation('alquiler')"
-                                    >alquiler</w-btn
-                                >
+                                <div class="w-full my-5">
+                                    <p class="bold ml-4">CALIDAD DE ACABADOS</p>
+                                    <div class="flex flex-row justify-center flex-wrap">
+                                        <div class="w-1/2 md:w-1/3 px-2">
+                                            <w-btn
+                                                :fullwidth="true"
+                                                :rounded="true"
+                                                :color="form.calidadAcabados == 'EXCELENTE' ? 'tertiary' : '#aaaaaa'"
+                                                :dark="true"
+                                                @click="form.calidadAcabados = 'EXCELENTE'"
+                                            >EXCELENTE</w-btn>
+                                        </div>
+                                        <div class="w-1/2 md:w-1/3 px-2">
+                                            <w-btn
+                                                :fullwidth="true"
+                                                :rounded="true"
+                                                :color="form.calidadAcabados == 'BUENO' ? 'tertiary' : '#aaaaaa'"
+                                                :dark="true"
+                                                @click="form.calidadAcabados = 'BUENO'"
+                                            >BUENO</w-btn>
+                                        </div>
+                                        <div class="w-1/2 md:w-1/3 px-2">
+                                            <w-btn
+                                                :fullwidth="true"
+                                                :rounded="true"
+                                                :color="form.calidadAcabados == 'REGULAR' ? 'tertiary' : '#aaaaaa'"
+                                                :dark="true"
+                                                @click="form.calidadAcabados = 'REGULAR'"
+                                            >REGULAR</w-btn>
+                                        </div>
+                                        <div class="w-1/2 md:w-1/3 px-2">
+                                            <w-btn
+                                                :fullwidth="true"
+                                                :rounded="true"
+                                                :color="form.calidadAcabados == 'MALO' ? 'tertiary' : '#aaaaaa'"
+                                                :dark="true"
+                                                @click="form.calidadAcabados = 'MALO'"
+                                            >MALO</w-btn>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="w-full my-5">
+                                    <p class="bold ml-4">CALIDAD DE CONSERVACIÓN</p>
+                                    <div class="flex flex-row justify-center flex-wrap">
+                                        <div class="w-1/2 md:w-1/3 px-2">
+                                            <w-btn
+                                                :fullwidth="true"
+                                                :rounded="true"
+                                                :color="form.calidadConservacion == 'EXCELENTE' ? 'tertiary' : '#aaaaaa'"
+                                                :dark="true"
+                                                @click="form.calidadConservacion = 'EXCELENTE'"
+                                            >EXCELENTE</w-btn>
+                                        </div>
+                                        <div class="w-1/2 md:w-1/3 px-2">
+                                            <w-btn
+                                                :fullwidth="true"
+                                                :rounded="true"
+                                                :color="form.calidadConservacion == 'BUENO' ? 'tertiary' : '#aaaaaa'"
+                                                :dark="true"
+                                                @click="form.calidadConservacion = 'BUENO'"
+                                            >BUENO</w-btn>
+                                        </div>
+                                        <div class="w-1/2 md:w-1/3 px-2">
+                                            <w-btn
+                                                :fullwidth="true"
+                                                :rounded="true"
+                                                :color="form.calidadConservacion == 'REGULAR' ? 'tertiary' : '#aaaaaa'"
+                                                :dark="true"
+                                                @click="form.calidadConservacion = 'REGULAR'"
+                                            >REGULAR</w-btn>
+                                        </div>
+                                        <div class="w-1/2 md:w-1/3 px-2">
+                                            <w-btn
+                                                :fullwidth="true"
+                                                :rounded="true"
+                                                :color="form.calidadConservacion == 'MALO' ? 'tertiary' : '#aaaaaa'"
+                                                :dark="true"
+                                                @click="form.calidadConservacion = 'MALO'"
+                                            >MALO</w-btn>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="w-full my-5">
+                                    <p class="bold ml-4">UBICACIÓN</p>
+                                    <div class="flex flex-row justify-center flex-wrap">
+                                        <div class="w-1/2 md:w-1/3 px-2">
+                                            <w-btn
+                                                :fullwidth="true"
+                                                :rounded="true"
+                                                :color="form.ubicacion == 'EXCELENTE' ? 'tertiary' : '#aaaaaa'"
+                                                :dark="true"
+                                                @click="form.ubicacion = 'EXCELENTE'"
+                                            >EXCELENTE</w-btn>
+                                        </div>
+                                        <div class="w-1/2 md:w-1/3 px-2">
+                                            <w-btn
+                                                :fullwidth="true"
+                                                :rounded="true"
+                                                :color="form.ubicacion == 'BUENO' ? 'tertiary' : '#aaaaaa'"
+                                                :dark="true"
+                                                @click="form.ubicacion = 'BUENO'"
+                                            >BUENO</w-btn>
+                                        </div>
+                                        <div class="w-1/2 md:w-1/3 px-2">
+                                            <w-btn
+                                                :fullwidth="true"
+                                                :rounded="true"
+                                                :color="form.ubicacion == 'REGULAR' ? 'tertiary' : '#aaaaaa'"
+                                                :dark="true"
+                                                @click="form.ubicacion = 'REGULAR'"
+                                            >REGULAR</w-btn>
+                                        </div>
+                                        <div class="w-1/2 md:w-1/3 px-2">
+                                            <w-btn
+                                                :fullwidth="true"
+                                                :rounded="true"
+                                                :color="form.ubicacion == 'MALO' ? 'tertiary' : '#aaaaaa'"
+                                                :dark="true"
+                                                @click="form.ubicacion = 'MALO'"
+                                            >MALO</w-btn>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
-                        <div class="form-group mt-5">
-                            <label class="caption uppercase bold ml-5"
-                                >DIRECCIÓN</label
-                            >
-                            <w-input v-model="form.dir"></w-input>
-                        </div>
-                        <div class="form-group mt-5">
-                            <label class="caption uppercase bold ml-5"
-                                >precio</label
-                            >
-                            <w-input v-model="form.price"></w-input>
-                        </div>
-                    </form>
-
-                    <form class="w-full lg:pl-10">
-                        <div class="form-group">
-                            <label class="caption uppercase bold ml-5"
-                                >ANTIGUEDAD</label
-                            >
-                            <w-input v-model="form.years"></w-input>
-                        </div>
-                        <div class="form-group">
-                            <label class="caption uppercase bold ml-5"
-                                >HABITACIONES</label
-                            >
-                            <w-input v-model="form.room"></w-input>
-                        </div>
-                        <div class="form-group">
-                            <label class="caption uppercase bold ml-5"
-                                >CUARTO DE SERVICIO</label
-                            >
-                            <w-input v-model="form.service"></w-input>
-                        </div>
-                        <div class="form-group">
-                            <label class="caption uppercase bold ml-5"
-                                >BAÑOS</label
-                            >
-                            <w-input></w-input>
-                        </div>
-                        <div class="form-group">
-                            <label class="caption uppercase bold ml-5"
-                                >COCHERAS</label
-                            >
-                            <w-input v-model="form.bath"></w-input>
-                        </div>
-                        <div class="form-group">
-                            <!-- <label class="caption uppercase bold ml-5">Zonificación</label> -->
-                            <w-select
-                                label="ZONIFICACION"
-                                placeholder="Pendientes"
-                                :options="['a', 'b', 'c']"
-                                v-model="form.zonificación"
-                            ></w-select>
+                        <div class="flex flex-row justify-center">
+                            <div class="w-full md:w-1/2">
+                                <div class="flex flex-row justify-between flex-wrap">
+                                    <div class="w-full md:w-1/2 px-2">
+                                        <w-btn
+                                            type="submit"
+                                            :fullwidth="true"
+                                            :large="true"
+                                            :dark="true"
+                                            color="secondary"
+                                        >GUARDAR CAMBIOS</w-btn>
+                                    </div>
+                                    <div class="w-full md:w-1/2 px-2">
+                                        <w-btn
+                                            :fullwidth="true"
+                                            :large="true"
+                                            :dark="true"
+                                            color="primary"
+                                            @click="$router.push('/amc/2')"
+                                        >SIGUIENTE</w-btn>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </form>
-                </div>
-
-                <!-- Botones  -->
-                <!-- Botones  -->
-                <div class="lg:w-11/12 mx-auto">
-                    <!-- Calidad de construccion  -->
-                    <div class="w-full lg:w-6/12 my-10">
-                        <label class="caption uppercase bold ml-5"
-                            >CALIDAD DE CONSTRUCCIÓN</label
-                        >
-                        <div class="flex flex-wrap caption">
-                            <button
-                                @click.prevent="setCuality('EXCELENTE')"
-                                style="width: 135px;"
-                                class="default text-white text-center px-3 py-2 rounded-full m-1"
-                            >
-                                EXCELENTE
-                            </button>
-                            <button
-                                @click.prevent="setCuality('BUENO')"
-                                style="width: 135px;"
-                                class="default text-white text-center px-3 py-2 rounded-full m-1"
-                            >
-                                BUENO
-                            </button>
-                            <button
-                                @click.prevent="setCuality('REGULAR')"
-                                style="width: 135px;"
-                                class="default text-white text-center px-3 py-2 rounded-full m-1"
-                            >
-                                REGULAR
-                            </button>
-                            <button
-                                @click.prevent="setCuality('MALO')"
-                                style="width: 135px;"
-                                class="default text-white text-center px-3 py-2 rounded-full m-1"
-                            >
-                                MALO
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Calidad de construccion  -->
-                    <div class="w-full lg:w-6/12 my-10">
-                        <label class="caption uppercase bold ml-5"
-                            >CALIDAD DE ACABADOS</label
-                        >
-                        <div class="flex flex-wrap caption">
-                            <button
-                                @click.prevent="setDetails('EXCELENTE')"
-                                style="width: 135px;"
-                                class="default text-white text-center px-3 py-2 rounded-full m-1"
-                            >
-                                EXCELENTE
-                            </button>
-                            <button
-                                @click.prevent="setDetails('BUENO')"
-                                style="width: 135px;"
-                                class="default text-white text-center px-3 py-2 rounded-full m-1"
-                            >
-                                BUENO
-                            </button>
-                            <button
-                                @click.prevent="setDetails('REGULAR')"
-                                style="width: 135px;"
-                                class="default text-white text-center px-3 py-2 rounded-full m-1"
-                            >
-                                REGULAR
-                            </button>
-                            <button
-                                @click.prevent="setDetails('MALO')"
-                                style="width: 135px;"
-                                class="default text-white text-center px-3 py-2 rounded-full m-1"
-                            >
-                                MALO
-                            </button>
-                        </div>
-                    </div>
-                    <!-- Calidad de conservacion  -->
-                    <div class="w-full lg:w-6/12 my-10">
-                        <label class="caption uppercase bold ml-5"
-                            >CALIDAD DE CONSERVACIÓN</label
-                        >
-                        <div class="flex flex-wrap caption">
-                            <button
-                                @click.prevent="setConservation('EXCELENTE')"
-                                style="width: 135px;"
-                                class="default text-white text-center px-3 py-2 rounded-full m-1"
-                            >
-                                EXCELENTE
-                            </button>
-                            <button
-                                @click.prevent="setConservation('BUENO')"
-                                style="width: 135px;"
-                                class="default text-white text-center px-3 py-2 rounded-full m-1"
-                            >
-                                BUENO
-                            </button>
-                            <button
-                                @click.prevent="setConservation('REGULAR')"
-                                style="width: 135px;"
-                                class="default text-white text-center px-3 py-2 rounded-full m-1"
-                            >
-                                REGULAR
-                            </button>
-                            <button
-                                @click.prevent="setConservation('MALO')"
-                                style="width: 135px;"
-                                class="default text-white text-center px-3 py-2 rounded-full m-1"
-                            >
-                                MALO
-                            </button>
-                        </div>
-                    </div>
-                    <!-- Calidad de conservacion  -->
-                    <div class="w-full lg:w-6/12 my-10">
-                        <label class="caption uppercase bold ml-5"
-                            >UBICACIÓN</label
-                        >
-                        <div class="flex flex-wrap caption">
-                            <button
-                                @click.prevent="setLocation('EXCELENTE')"
-                                style="width: 135px;"
-                                class="default text-white text-center px-3 py-2 rounded-full m-1"
-                            >
-                                EXCELENTE
-                            </button>
-                            <button
-                                @click.prevent="setLocation('BUENO')"
-                                style="width: 135px;"
-                                class="default text-white text-center px-3 py-2 rounded-full m-1"
-                            >
-                                BUENO
-                            </button>
-                            <button
-                                @click.prevent="setLocation('REGULAR')"
-                                style="width: 135px;"
-                                class="default text-white text-center px-3 py-2 rounded-full m-1"
-                            >
-                                REGULAR
-                            </button>
-                            <button
-                                @click.prevent="setLocation('MALO')"
-                                style="width: 135px;"
-                                class="default text-white text-center px-3 py-2 rounded-full m-1"
-                            >
-                                MALO
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="lg:flex justify-around mt-10">
-                    <w-btn
-                        @click="showForm"
-                        class="bold w-full lg:w-1/3"
-                        :large="true"
-                        :dark="true"
-                        >GUARDAR CAMBIOS</w-btn
-                    >
-                    <w-btn
-                        class="bold w-full lg:w-1/3"
-                        :large="true"
-                        :dark="true"
-                        color="primary"
-                        >siguiente</w-btn
-                    >
                 </div>
             </w-card>
+            <br />
         </div>
     </div>
 </template>
@@ -298,64 +304,50 @@
 export default {
     data() {
         return {
-            checked: true,
-            windowWidth: window.innerWidth,
-            select: null,
-            form: {},
+            form: {
+                operacion: "VENTA",
+                calidadConstruccion: "",
+                calidadAcabados: "",
+                calidadConservacion: "",
+                ubicacion: ""
+            }
         };
-    },
-
-    mounted() {
-        window.addEventListener("resize", () => {
-            this.windowWidth = window.innerWidth;
-        });
-    },
-
-    methods: {
-        setOperation(op) {
-            this.form.operacion = op;
-        },
-        setCuality(op) {
-            this.form.cuality = op;
-        },
-        setDetails(op) {
-            this.form.details = op;
-        },
-        setConservation(op) {
-            this.form.conservation = op;
-        },
-        setLocation(op) {
-            this.form.location = op;
-        },
-
-        showForm() {
-            console.log(this.form);
-        },
-    },
+    }
 };
 </script>
 
 <style lang="scss">
-.bn {
-    border: 1px solid black;
-}
-.fan {
-    font-size: 28px;
-}
-.precios-container {
-    width: 90%;
-    margin: auto;
-}
-
-@media (max-width: 764px) {
-    .precios-container {
+.amc-1 {
+    .amc-container {
         width: 95%;
+        margin: auto;
+        .step-btn {
+            padding: 5px 25px;
+            margin: 20px 18px;
+        }
+
+        .amc-progress {
+            width: inherit;
+            margin: 20px 0px;
+            &[value] {
+                &::-webkit-progress-bar {
+                    background-color: #aaaaaa;
+                    border-radius: 15px;
+                }
+                &::-webkit-progress-value {
+                    background-color: #ff7500;
+                    border-radius: 15px;
+                }
+            }
+        }
     }
 }
 
-.custom-carousel {
-    .carousel {
-        width: 95% !important;
+@media (max-width: 768px) {
+    .amc-1 {
+        .amc-container {
+            width: 100%;
+        }
     }
 }
 </style>

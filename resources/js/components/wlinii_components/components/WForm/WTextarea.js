@@ -1,9 +1,11 @@
 import Vue from "vue";
+import anime from "animejs";
 
 Vue.component("w-textarea", {
   data: () => ({
+    activeSnack: false,
     onFocus: false,
-    errorMessage: null
+    errorMessage: null,
   }),
 
   props: {
@@ -15,15 +17,23 @@ Vue.component("w-textarea", {
     label: String,
     color: {
       type: String,
-      default: "primary"
+      default: "primary",
     },
     beforeIcon: String,
     afterIcon: String,
-    rules: Array
+    rules: Array,
   },
 
   template: `
         <div class="input-container">
+            <div class="snackbar">
+              <transition @enter="enterSnack">
+                  <div class="snackbar-card" ref="snack" v-if="$slots.snackbar && activeSnack">
+                      <div class="close-card" @click="activeSnack = false">×</div>
+                      <slot name="snackbar"></slot>
+                  </div>
+              </transition>
+            </div>
             <div :class="inputGroupClass" :style="inputGroupStyle" >
                 <w-icon v-if="beforeIcon" :icon="beforeIcon" class="before"></w-icon>
                 <div class="input-label">
@@ -37,7 +47,14 @@ Vue.component("w-textarea", {
                         :class="inputClass"
                     >
                     </textarea>
-                    <label :style="labelStyle">{{ label }}</label>
+                    <label :style="labelStyle">
+                      {{ label }}
+                      <div class="snackbar" v-if="$slots.snackbar">
+                          <div class="snackbar-action" @click="activeSnack = true">
+                            <w-icon icon="info" h="12px"></w-icon>
+                          </div> 
+                      </div>
+                    </label>
                 </div>
                 <w-icon v-if="afterIcon" :icon="afterIcon" class="after"></w-icon>
             </div>
@@ -82,7 +99,7 @@ Vue.component("w-textarea", {
       this.value ? (inputClass += "active") : "";
       this.disabled ? (inputClass += " disabled") : "";
       return inputClass;
-    }
+    },
   },
 
   methods: {
@@ -90,12 +107,12 @@ Vue.component("w-textarea", {
       if (this.$wlinii[this.color]) {
         return {
           group: `border: 2px solid ${this.$wlinii[this.color]}`,
-          label: `color: ${this.$wlinii[this.color]}`
+          label: `color: ${this.$wlinii[this.color]}`,
         };
       } else {
         return {
           group: `border: 2px solid ${this.color}`,
-          label: `color: ${this.color}`
+          label: `color: ${this.color}`,
         };
       }
     },
@@ -111,6 +128,17 @@ Vue.component("w-textarea", {
           }
         }
       }
-    }
-  }
+    },
+
+    enterSnack() {
+      let snackElement = this.$refs.snack;
+
+      anime({
+        targets: snackElement,
+        scale: [0, 1],
+        duration: 250,
+        easing: "easeInOutSine",
+      });
+    },
+  },
 });

@@ -8,12 +8,17 @@
 
     <div class="login">
         <div class="login-container">
-            <w-card
-                image="/images/login.png"
-                class="login-card"
-                :shadow="false"
-            >
-                <p class="bold ml-4">INGRESARA A LA PLATAFORMA</p>
+            <w-card image="/images/login.png" class="login-card" :shadow="false">
+                <div class="flex flex-row ml-4">
+                    <p class="bold">INGRESARA A LA PLATAFORMA</p>
+                    <w-snackbar class="ml-5">
+                        <w-icon icon="info" h="24px"></w-icon>
+                        <template slot="content">
+                            <p class="bold">Importante!</p>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit</p>
+                        </template>
+                    </w-snackbar>
+                </div>
                 <form class="mt-6" @submit.prevent="login">
                     <w-input
                         label="Usuario"
@@ -28,13 +33,7 @@
                         v-model="form.pass"
                     ></w-input>
                     <a class="login-link ml-4">¿Ha olvidado la contraseña?</a>
-                    <w-btn
-                        @click="login()"
-                        color="tertiary"
-                        :dark="true"
-                        :fullwidth="true"
-                        >Ingresar</w-btn
-                    >
+                    <w-btn @click="login()" color="tertiary" :dark="true" :fullwidth="true">Ingresar</w-btn>
                     <w-checkbox
                         class="mt-6 ml-4"
                         color="tertiary"

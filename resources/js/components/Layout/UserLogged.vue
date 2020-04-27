@@ -60,12 +60,12 @@ export default {
             {
                 name: "Perfil",
                 icon: "user",
-                path: "/profile"
+                path: "/agente"
             },
             {
-                name: "Perfil Broker",
+                name: "Perfil Brocker",
                 icon: "user",
-                path: "/profile/broker"
+                path: "/perfil/brocker"
             },
             {
                 name: "Publicación",
@@ -75,7 +75,7 @@ export default {
             {
                 name: "AMC",
                 icon: "database",
-                path: "/"
+                path: "/amc/1"
             },
             {
                 name: "Cerrar Sesión",

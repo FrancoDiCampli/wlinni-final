@@ -5,7 +5,8 @@ Vue.component("w-select", {
   data: () => ({
     onFocus: false,
     errorMessage: null,
-    showOptions: false
+    showOptions: false,
+    activeSnack: false
   }),
 
   props: {
@@ -30,17 +31,33 @@ Vue.component("w-select", {
 
   template: `
         <div class="input-container">
-            <div :class="inputGroupClass" :style="inputGroupStyle" @click="showOptions = !showOptions" ref="inputGroup">
+          <div class="snackbar">
+              <transition @enter="enterSnack">
+                  <div class="snackbar-card" ref="snack" v-if="$slots.snackbar && activeSnack">
+                      <div class="close-card" @click="activeSnack = false">×</div>
+                      <slot name="snackbar"></slot>
+                  </div>
+              </transition>
+            </div>
+            <div :class="inputGroupClass" :style="inputGroupStyle"  ref="inputGroup">
                 <w-icon v-if="beforeIcon" :icon="beforeIcon" class="before"></w-icon>
                 <div class="input-label">
                     <input
-                        disabled
+                        readonly
                         :value="selectOption"
                         @input="$emit('input', $event.target.value)"
                         :class="inputClass"
                         :placeholder="placeholder"
+                        @click="showOptions = !showOptions"
                     />
-                    <label :style="labelStyle">{{ label }}</label>
+                    <label :style="labelStyle">
+                      {{ label }}
+                      <div class="snackbar" v-if="$slots.snackbar">
+                          <div class="snackbar-action" @click="activeSnack = true">
+                            <w-icon icon="info" h="12px"></w-icon>
+                          </div> 
+                      </div>
+                    </label>
                 </div>
                 <div class="icon select-icon">
                     <img :src="iconURL" ref="selectIcon" />
@@ -191,6 +208,17 @@ Vue.component("w-select", {
       anime({
         targets: iconElement,
         rotate: ["180deg", "0deg"],
+        duration: 250,
+        easing: "easeInOutSine"
+      });
+    },
+
+    enterSnack() {
+      let snackElement = this.$refs.snack;
+
+      anime({
+        targets: snackElement,
+        scale: [0, 1],
         duration: 250,
         easing: "easeInOutSine"
       });

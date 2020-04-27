@@ -14,12 +14,21 @@
             <p class="white-text mt-10 ml-5 hidden md:block">Crear una cuenta</p>
             <w-card :shadow="false" class="mt-5 register-card">
                 <form>
-                    <w-switch
-                        activeLabel="ASESORES INMOBILIARIAS"
-                        inactiveLabel="REGISTRADOS MVCS"
-                        v-model="code"
-                        color="secondary"
-                    ></w-switch>
+                    <div class="flex flex-row justify-between">
+                        <w-switch
+                            activeLabel="ASESORES INMOBILIARIAS"
+                            inactiveLabel="REGISTRADOS MVCS"
+                            v-model="code"
+                            color="secondary"
+                        ></w-switch>
+                        <w-snackbar class="mt-1">
+                            <w-icon icon="info" h="24px"></w-icon>
+                            <template slot="content">
+                                <p class="bold">Importante!</p>
+                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit</p>
+                            </template>
+                        </w-snackbar>
+                    </div>
                 </form>
                 <hr />
                 <div v-if="!code" class="mt-5">
@@ -30,12 +39,22 @@
                             v-model="form.code"
                             label="Código MVCS"
                             placeholder="Ingresar nombre / Codigo"
-                        ></w-input>
+                        >
+                            <template slot="snackbar">
+                                <p class="bold">Importante!</p>
+                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuadas.</p>
+                            </template>
+                        </w-input>
                         <w-input
                             v-model="form.phone"
                             label="Número Teléfono"
                             placeholder="Ingresar número"
-                        ></w-input>
+                        >
+                            <template slot="snackbar">
+                                <p class="bold">Importante!</p>
+                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuadas.</p>
+                            </template>
+                        </w-input>
                         <w-textarea
                             v-model="form.description"
                             label="Ingresar breve descripción"
@@ -62,7 +81,12 @@
                                     v-model="form.code"
                                     label="Código MVCS"
                                     placeholder="Ingresar nombre / Codigo"
-                                ></w-input>
+                                >
+                                    <template slot="snackbar">
+                                        <p class="bold">Importante!</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuadas.</p>
+                                    </template>
+                                </w-input>
                             </div>
                             <div class="w-full md:w-1/2 pl-0 md:pl-2 mb-8 md:mb-0">
                                 <w-btn
@@ -86,14 +110,24 @@
                                     v-model="form.firstname"
                                     label="Primer Nombre"
                                     placeholder=" "
-                                ></w-input>
+                                >
+                                    <template slot="snackbar">
+                                        <p class="bold">Importante!</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuadas.</p>
+                                    </template>
+                                </w-input>
                             </div>
                             <div class="w-full md:w-1/2 pl-0 md:pl-2">
                                 <w-input
                                     v-model="form.secondname"
                                     label="Segundo Nombre"
                                     placeholder=" "
-                                ></w-input>
+                                >
+                                    <template slot="snackbar">
+                                        <p class="bold">Importante!</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuadas.</p>
+                                    </template>
+                                </w-input>
                             </div>
                         </div>
                         <div class="flex flex-row justify-center flex-wrap">
@@ -102,26 +136,46 @@
                                     v-model="form.lastname1"
                                     label="Apellido Paterno"
                                     placeholder=" "
-                                ></w-input>
+                                >
+                                    <template slot="snackbar">
+                                        <p class="bold">Importante!</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuadas.</p>
+                                    </template>
+                                </w-input>
                             </div>
                             <div class="w-full md:w-1/2 pl-0 md:pl-2">
                                 <w-input
                                     v-model="form.lastname2"
                                     label="Apellido Materno"
                                     placeholder=" "
-                                ></w-input>
+                                >
+                                    <template slot="snackbar">
+                                        <p class="bold">Importante!</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuadas.</p>
+                                    </template>
+                                </w-input>
                             </div>
                         </div>
                         <w-input
                             v-model="form.email"
                             label="Ingresar correo electrónico"
                             placeholder="example@gmail.com"
-                        ></w-input>
+                        >
+                            <template slot="snackbar">
+                                <p class="bold">Importante!</p>
+                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuadas.</p>
+                            </template>
+                        </w-input>
                         <w-input
                             v-model="form.dni"
                             label="Ingresar documento de identidad"
                             placeholder="Ingresar documento"
-                        ></w-input>
+                        >
+                            <template slot="snackbar">
+                                <p class="bold">Importante!</p>
+                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuadas.</p>
+                            </template>
+                        </w-input>
                         <w-textarea
                             v-model="form.description"
                             label="Ingresar breve descripción"

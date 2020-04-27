@@ -11,12 +11,23 @@
             <w-card :shadow="false">
                 <p class="subtitle bold mt-5 ml-5">Agregar Publicación</p>
                 <p class="ml-5">Agregar la información de la nueva publicación</p>
-                <form>
+
+                <div class="lg:w-2/3 primary rounded-bl-full rounded-r-full lg:ml-5 mt-6 p-4">
+                    <p
+                        class="caption white-text truncate"
+                    >Configuración flexible y formas de edición, agregue y edite información de listado, fotos y ubicación de la posición</p>
+                </div>
+
+                <form @submit.prevent>
                     <div class="form-section">
                         <div
                             class="form-header"
                             :class="sections.inmueble ? 'header-active' : ''"
-                            @click="windowWidth <= 768 ? sections.inmueble = !sections.inmueble : ''"
+                            @click="
+                                windowWidth <= 768
+                                    ? (sections.inmueble = !sections.inmueble)
+                                    : ''
+                            "
                         >
                             <p>Tipo de Inmueble</p>
                             <w-icon icon="arrow-down" h="18px"></w-icon>
@@ -46,7 +57,11 @@
                         <div
                             class="form-header"
                             :class="sections.ubicacion ? 'header-active' : ''"
-                            @click="windowWidth <= 768 ? sections.ubicacion = !sections.ubicacion : ''"
+                            @click="
+                                windowWidth <= 768
+                                    ? (sections.ubicacion = !sections.ubicacion)
+                                    : ''
+                            "
                         >
                             <p>Ubicación</p>
                             <w-icon icon="arrow-down" h="18px"></w-icon>
@@ -55,11 +70,16 @@
                             <div class="flex flex-row flex-wrap">
                                 <div class="w-full md:w-1/3 px-2">
                                     <w-select
-                                        label="Ubicación"
+                                        label="Departamento"
                                         placeholder="Elegir departamento..."
                                         :options="['a', 'b', 'c']"
-                                        v-model="form.ubicacion"
-                                    ></w-select>
+                                        v-model="form.departamento"
+                                    >
+                                        <template slot="snackbar">
+                                            <p class="bold">Importante!</p>
+                                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuadas.</p>
+                                        </template>
+                                    </w-select>
                                 </div>
                                 <div class="w-full md:w-1/3 px-2">
                                     <w-select
@@ -67,7 +87,12 @@
                                         placeholder="Elegir departamento..."
                                         :options="['a', 'b', 'c']"
                                         v-model="form.provincias"
-                                    ></w-select>
+                                    >
+                                        <template slot="snackbar">
+                                            <p class="bold">Importante!</p>
+                                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuadas.</p>
+                                        </template>
+                                    </w-select>
                                 </div>
                             </div>
                             <div class="flex flex-row flex-wrap">
@@ -77,7 +102,12 @@
                                         placeholder="Elegir departamento..."
                                         :options="['a', 'b', 'c']"
                                         v-model="form.distrito"
-                                    ></w-select>
+                                    >
+                                        <template slot="snackbar">
+                                            <p class="bold">Importante!</p>
+                                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuadas.</p>
+                                        </template>
+                                    </w-select>
                                 </div>
                                 <div class="w-full md:w-1/3 px-2">
                                     <w-select
@@ -85,7 +115,12 @@
                                         placeholder="Elegir departamento..."
                                         :options="['a', 'b', 'c']"
                                         v-model="form.urbanizacion"
-                                    ></w-select>
+                                    >
+                                        <template slot="snackbar">
+                                            <p class="bold">Importante!</p>
+                                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuadas.</p>
+                                        </template>
+                                    </w-select>
                                 </div>
                             </div>
 
@@ -109,7 +144,11 @@
                         <div
                             class="form-header"
                             :class="sections.precio ? 'header-active' : ''"
-                            @click="windowWidth <= 768 ? sections.precio = !sections.precio : ''"
+                            @click="
+                                windowWidth <= 768
+                                    ? (sections.precio = !sections.precio)
+                                    : ''
+                            "
                         >
                             <p>Precio</p>
                             <w-icon icon="arrow-down" h="18px"></w-icon>
@@ -142,7 +181,11 @@
                         <div
                             class="form-header"
                             :class="sections.datos ? 'header-active' : ''"
-                            @click="windowWidth <= 768 ? sections.datos = !sections.datos : ''"
+                            @click="
+                                windowWidth <= 768
+                                    ? (sections.datos = !sections.datos)
+                                    : ''
+                            "
                         >
                             <p>Datos del inmueble</p>
                             <w-icon icon="arrow-down" h="18px"></w-icon>
@@ -255,7 +298,11 @@
                         <div
                             class="form-header"
                             :class="sections.servicios ? 'header-active' : ''"
-                            @click="windowWidth <= 768 ? sections.servicios = !sections.servicios : ''"
+                            @click="
+                                windowWidth <= 768
+                                    ? (sections.servicios = !sections.servicios)
+                                    : ''
+                            "
                         >
                             <p>Servicios</p>
                             <w-icon icon="arrow-down" h="18px"></w-icon>
@@ -316,7 +363,11 @@
                         <div
                             class="form-header"
                             :class="sections.ambientes ? 'header-active' : ''"
-                            @click="windowWidth <= 768 ? sections.ambientes = !sections.ambientes : ''"
+                            @click="
+                                windowWidth <= 768
+                                    ? (sections.ambientes = !sections.ambientes)
+                                    : ''
+                            "
                         >
                             <p>Ambientes</p>
                             <w-icon icon="arrow-down" h="18px"></w-icon>
@@ -423,8 +474,14 @@
                     <div class="form-section">
                         <div
                             class="form-header"
-                            :class="sections.areascomunes ? 'header-active' : ''"
-                            @click="windowWidth <= 768 ? sections.areascomunes = !sections.areascomunes : ''"
+                            :class="
+                                sections.areascomunes ? 'header-active' : ''
+                            "
+                            @click="
+                                windowWidth <= 768
+                                    ? (sections.areascomunes = !sections.areascomunes)
+                                    : ''
+                            "
                         >
                             <p>Areas comunes</p>
                             <w-icon icon="arrow-down" h="18px"></w-icon>
@@ -520,15 +577,18 @@
                         </div>
                     </div>
                     <div>
-                        <p class="body bold tertiary-text ml-5">Locación</p>
+                        <p class="body bold tertiary-text ml-5 mb-4">Locación</p>
                         <p
-                            class="ml-5"
+                            class="ml-5 mb-4"
                         >Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis.</p>
+                        <mapas-agregar></mapas-agregar>
                     </div>
                     <div class="mt-20">
                         <div class="f-header">
                             Fotos
-                            <span class="caption black-text">(0 de 20 disponibles)</span>
+                            <span
+                                class="caption black-text"
+                            >({{ form.files.length }} de 20 disponibles)</span>
                         </div>
                         <div class="flex flex-row justify-center flex-wrap">
                             <div class="w-full md:w-1/2 px-2">
@@ -538,15 +598,26 @@
                                         <p
                                             class="text-center mt-5"
                                         >Arrastra fotos desde tu computadora</p>
+
                                         <w-btn
                                             color="#57BCD1"
                                             :dark="true"
                                             :rounded="true"
                                             :small="true"
-                                        >seleccionar fotos</w-btn>
-                                        <p
-                                            class="text-center mt-5"
-                                        >Formatos permitidos: JPG, JPEG, PNG (Tamaño máximo: 5Mb)</p>
+                                        >
+                                            <p>seleccionar fotos</p>
+                                            <input
+                                                class="fileInput"
+                                                type="file"
+                                                ref="photoFile"
+                                                accept=".jpg, .jpeg, .png"
+                                                @change="addFile('photoFile')"
+                                            />
+                                        </w-btn>
+                                        <p class="text-center mt-5">
+                                            Formatos permitidos: JPG, JPEG, PNG
+                                            (Tamaño máximo: 5Mb)
+                                        </p>
                                     </div>
                                 </w-card>
                             </div>
@@ -562,19 +633,32 @@
                                             :dark="true"
                                             :rounded="true"
                                             :small="true"
-                                        >seleccionar videos</w-btn>
-                                        <p
-                                            class="text-center mt-5"
-                                        >Formatos permitidos: MP4, AVI, (Tamaño máximo: 50Mb)</p>
+                                        >
+                                            <p>seleccionar videos</p>
+                                            <input
+                                                class="fileInput"
+                                                type="file"
+                                                ref="videoFile"
+                                                accept=".mp4, .avi"
+                                                @change="addFile('videoFile')"
+                                            />
+                                        </w-btn>
+                                        <p class="text-center mt-5">
+                                            Formatos permitidos: MP4, AVI,
+                                            (Tamaño máximo: 50Mb)
+                                        </p>
                                     </div>
                                 </w-card>
                             </div>
                         </div>
                         <div class="flex flex-row justify-center">
                             <div class="w-full md:w-1/2 px-2 mt-10 mb-20">
-                                <p
-                                    class="text-center"
-                                >Si ha completadp todos los campos y está seguro de la exactitud de toda la información, haga clic en el botón a continuación para guardar los datos</p>
+                                <p class="text-center">
+                                    Si ha completadp todos los campos y está
+                                    seguro de la exactitud de toda la
+                                    información, haga clic en el botón a
+                                    continuación para guardar los datos
+                                </p>
                             </div>
                         </div>
                         <div class="flex flex-row justify-center">
@@ -588,6 +672,8 @@
 </template>
 
 <script>
+import MapasAgregar from "../../components/mapas/MapasAgregar";
+
 export default {
     data: () => ({
         windowWidth: window.innerWidth,
@@ -601,13 +687,28 @@ export default {
             areascomunes: true,
             video: true
         },
-        form: {}
+        form: {
+            files: []
+        }
     }),
+
+    components: {
+        MapasAgregar
+    },
 
     mounted() {
         window.addEventListener("resize", () => {
             this.windowWidth = window.innerWidth;
         });
+    },
+
+    methods: {
+        addFile(type) {
+            this.form.files.push({
+                file: this.$refs[type].files[0],
+                name: this.$refs[type].files[0].name
+            });
+        }
     }
 };
 </script>
@@ -644,6 +745,18 @@ export default {
             border: 1px solid #e6e6e6;
             .card-text {
                 background-color: #fcfcfc;
+                .fileInput {
+                    cursor: pointer;
+                    height: 100%;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    z-index: 99;
+                    font-size: 50px;
+                    opacity: 0;
+                    -moz-opacity: 0;
+                    filter: Alpha(opacity=0);
+                }
             }
         }
     }

@@ -43,12 +43,7 @@ html {
 .caption {
   font-size: 13px;
 }
-.fan {
-    font-size: 19px;
-  }
-.xxs{
-    font-size: 11px;
-}
+
 $sizes: (
   "xs": 0px,
   "sm": 576px,
@@ -84,12 +79,5 @@ $sizes: (
       font-family: Roboto-Light, sans-serif;
       font-weight: lighter;
     }
-      .fan-#{$name} {
-        font-size: 19px;
-      }
-      .xss-#{$name} {
-        font-size: 11px;
-      }
-
   }
 }

@@ -9,10 +9,7 @@
         <div class="precios-container py-16">
             <w-card :shadow="false">
                 <div class="flex justify-center">
-                    <p
-                        class="subtitle bold"
-                        style="margin: 67px 0px 44px 0px;"
-                    >Precios de suscripción</p>
+                    <p class="subtitle bold ml-5 my-5 md:ml-0">Precios de suscripción</p>
                 </div>
                 <br />
                 <div>

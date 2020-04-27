@@ -28,6 +28,7 @@
     }
     &.outlined {
       border-width: 4.5px;
+      padding: 16.5px 36.5px;
     }
   }
   &.small {
@@ -37,15 +38,17 @@
     }
     &.outlined {
       border-width: 1.5px;
+      padding: 7px 17px;
     }
   }
   &.rounded {
     border-radius: 26px;
   }
   &.outlined {
-    background-color: white;
+    background-color: transparent;
     border-width: 3px;
     border-style: solid;
+    padding: 11px 24px;
   }
 
   &.icon {

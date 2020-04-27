@@ -19,19 +19,14 @@
                             color="secondary"
                             :dark="true"
                             @click="filtrar = false"
-                            >filtrar</w-btn
-                        >
+                        >filtrar</w-btn>
                     </div>
                 </div>
             </div>
             <w-card :shadow="false" v-else>
                 <div>
-                    <p class="body subtitle-md bold ml-5">
-                        Análisis de Mercado Comparativo (AMC)
-                    </p>
-                    <p class="caption primary-text ml-5">
-                        Aplicación de analisis de precios
-                    </p>
+                    <p class="body subtitle-md bold ml-5">Análisis de Mercado Comparativo (AMC)</p>
+                    <p class="caption primary-text ml-5">Aplicación de analisis de precios</p>
                     <w-btn
                         :disabled="true"
                         :rounded="true"
@@ -39,17 +34,10 @@
                         :small="true"
                         color="primary"
                         class="step-btn"
-                        >02 PASO</w-btn
-                    >
-                    <p class="body subtitle-md bold ml-5">
-                        Agregar Oferta Pública
-                    </p>
+                    >02 PASO</w-btn>
+                    <p class="body subtitle-md bold ml-5">Agregar Oferta Pública</p>
                     <div class="w-full px-5">
-                        <progress
-                            value="50"
-                            max="100"
-                            class="amc-progress"
-                        ></progress>
+                        <progress value="50" max="100" class="amc-progress"></progress>
                     </div>
                 </div>
                 <div class="flex flex-row justify-between flex-wrap">
@@ -57,9 +45,9 @@
                         <div class="tertiary alert">
                             <div class="flex flex-row justify-between">
                                 <div>
-                                    <p class="caption body-md bold white-text">
-                                        Publicaciones seleccionadas (3)
-                                    </p>
+                                    <p
+                                        class="caption body-md bold white-text"
+                                    >Publicaciones seleccionadas (3)</p>
                                     <p class="white-text">Seleccionadas</p>
                                 </div>
                                 <div>
@@ -72,9 +60,7 @@
                     <div class="w-full md:w-1/2 p-5 md:pr-5 md:pl-2">
                         <div class="primary alert">
                             <p class="body bold white-text">Ingeso Manual</p>
-                            <p class="white-text">
-                                Insertar datos para el cálculo
-                            </p>
+                            <p class="white-text">Insertar datos para el cálculo</p>
                         </div>
                     </div>
                 </div>
@@ -83,9 +69,7 @@
                         <div>
                             <w-card :shadow="false">
                                 <template slot="header">
-                                    <p class="caption bold white-text">
-                                        FILTROS
-                                    </p>
+                                    <p class="caption bold white-text">FILTROS</p>
                                 </template>
 
                                 <FiltroInmueble></FiltroInmueble>
@@ -99,11 +83,10 @@
                             :dark="true"
                             color="secondary"
                             @click="filtrar = true"
-                            >filtrar</w-btn
-                        >
+                        >filtrar</w-btn>
                         <div class="flex flex-row justify-between flex-wrap">
                             <div
-                                class="sm:w-full lg:w-1/3 pt-5 pr-5"
+                                class="sm:w-full lg:w-1/3 pt-5 md:pr-5"
                                 v-for="(card, i) in cards"
                                 :key="i"
                             >
@@ -119,71 +102,45 @@
                                         <p>{{ card.descripcion }}</p>
                                     </template>
                                     <template slot="state">
-                                        <p class="white-text">
-                                            {{ card.tipo }}
-                                        </p>
+                                        <p class="white-text">{{ card.tipo }}</p>
                                     </template>
                                     <p class="bold">{{ card.title }}</p>
                                     <p>{{ card.body }}</p>
                                     <p>Comisión</p>
                                     <div class="flex flex-row justify-between">
-                                        <p class="body bold">
-                                            {{ card.comision }}
-                                        </p>
-                                        <p class="body bold tertiary-text">
-                                            {{ card.mes }}
-                                        </p>
+                                        <p class="body bold">{{ card.comision }}</p>
+                                        <p class="body bold tertiary-text">{{ card.mes }}</p>
                                     </div>
 
                                     <template slot="footer">
-                                        <div
-                                            class="flex flex-row justify-between"
-                                        >
-                                            <div
-                                                class="flex flex-row justify-between"
-                                            >
+                                        <div class="flex flex-row justify-between">
+                                            <div class="flex flex-row justify-between">
                                                 <div class="info-item">
-                                                    <w-icon
-                                                        icon="room-solid"
-                                                        h="12px"
-                                                    ></w-icon>
+                                                    <w-icon icon="room-solid" h="12px"></w-icon>
                                                     <p class="white-text">
                                                         {{
-                                                            card.info
-                                                                .habitaciones
+                                                        card.info
+                                                        .habitaciones
                                                         }}
                                                     </p>
                                                 </div>
                                                 <div class="info-item">
-                                                    <w-icon
-                                                        icon="bath-solid"
-                                                        h="15px"
-                                                    ></w-icon>
-                                                    <p class="white-text">
-                                                        {{ card.info.baños }}
-                                                    </p>
+                                                    <w-icon icon="bath-solid" h="15px"></w-icon>
+                                                    <p class="white-text">{{ card.info.baños }}</p>
                                                 </div>
                                                 <div class="info-item">
-                                                    <w-icon
-                                                        icon="parking-solid"
-                                                        h="12px"
-                                                    ></w-icon>
+                                                    <w-icon icon="parking-solid" h="12px"></w-icon>
                                                     <p class="white-text">
                                                         {{
-                                                            card.info
-                                                                .estacionamiento
+                                                        card.info
+                                                        .estacionamiento
                                                         }}
                                                     </p>
                                                 </div>
                                             </div>
                                             <div class="info-item">
-                                                <w-icon
-                                                    icon="size"
-                                                    h="15px"
-                                                ></w-icon>
-                                                <p class="white-text">
-                                                    {{ card.info.tamaño }}
-                                                </p>
+                                                <w-icon icon="size" h="15px"></w-icon>
+                                                <p class="white-text">{{ card.info.tamaño }}</p>
                                             </div>
                                         </div>
                                     </template>
@@ -193,13 +150,26 @@
                         <br />
                     </div>
                 </div>
+                <div class="flex flex-row justify-center md:justify-end md:mr-5">
+                    <div class="w-full md:w-1/5">
+                        <w-btn
+                            :large="true"
+                            :dark="true"
+                            :fullwidth="true"
+                            color="primary"
+                            @click="$router.push('/amc/3')"
+                        >siguiente</w-btn>
+                    </div>
+                </div>
             </w-card>
+            <br />
         </div>
     </div>
 </template>
 
 <script>
-import FiltroInmueble from "../inmuebles/FiltroInmueble";
+import FiltroInmueble from "../../components/inmuebles/FiltroInmueble";
+
 export default {
     data() {
         return {
@@ -224,8 +194,8 @@ export default {
                         habitaciones: 3,
                         baños: 2,
                         estacionamiento: 2,
-                        tamaño: "120m",
-                    },
+                        tamaño: "120m"
+                    }
                 },
                 {
                     tipo: "En Venta",
@@ -242,8 +212,8 @@ export default {
                         habitaciones: 3,
                         baños: 2,
                         estacionamiento: 2,
-                        tamaño: "120m",
-                    },
+                        tamaño: "120m"
+                    }
                 },
                 {
                     tipo: "En Venta",
@@ -260,8 +230,8 @@ export default {
                         habitaciones: 3,
                         baños: 2,
                         estacionamiento: 2,
-                        tamaño: "120m",
-                    },
+                        tamaño: "120m"
+                    }
                 },
                 {
                     tipo: "En Venta",
@@ -278,8 +248,8 @@ export default {
                         habitaciones: 3,
                         baños: 2,
                         estacionamiento: 2,
-                        tamaño: "120m",
-                    },
+                        tamaño: "120m"
+                    }
                 },
                 {
                     tipo: "En Venta",
@@ -296,8 +266,8 @@ export default {
                         habitaciones: 3,
                         baños: 2,
                         estacionamiento: 2,
-                        tamaño: "120m",
-                    },
+                        tamaño: "120m"
+                    }
                 },
                 {
                     tipo: "En Venta",
@@ -314,8 +284,8 @@ export default {
                         habitaciones: 3,
                         baños: 2,
                         estacionamiento: 2,
-                        tamaño: "120m",
-                    },
+                        tamaño: "120m"
+                    }
                 },
                 {
                     tipo: "En Venta",
@@ -332,8 +302,8 @@ export default {
                         habitaciones: 3,
                         baños: 2,
                         estacionamiento: 2,
-                        tamaño: "120m",
-                    },
+                        tamaño: "120m"
+                    }
                 },
                 {
                     tipo: "En Venta",
@@ -350,8 +320,8 @@ export default {
                         habitaciones: 3,
                         baños: 2,
                         estacionamiento: 2,
-                        tamaño: "120m",
-                    },
+                        tamaño: "120m"
+                    }
                 },
                 {
                     tipo: "En Venta",
@@ -368,14 +338,14 @@ export default {
                         habitaciones: 3,
                         baños: 2,
                         estacionamiento: 2,
-                        tamaño: "120m",
-                    },
-                },
-            ],
+                        tamaño: "120m"
+                    }
+                }
+            ]
         };
     },
     components: {
-        FiltroInmueble,
+        FiltroInmueble
     },
 
     mounted() {
@@ -403,8 +373,8 @@ export default {
 
         showForm() {
             console.log(this.form);
-        },
-    },
+        }
+    }
 };
 </script>
 

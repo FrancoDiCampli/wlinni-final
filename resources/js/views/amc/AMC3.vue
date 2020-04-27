@@ -10,12 +10,8 @@
         <div class="amc-container py-16">
             <w-card :shadow="false">
                 <div>
-                    <p class="body subtitle-md bold md:ml-5">
-                        Análisis de Mercado Comparativo (AMC)
-                    </p>
-                    <p class="caption primary-text md:ml-5">
-                        Aplicación de analisis de precios
-                    </p>
+                    <p class="body subtitle-md bold md:ml-5">Análisis de Mercado Comparativo (AMC)</p>
+                    <p class="caption primary-text md:ml-5">Aplicación de analisis de precios</p>
                     <w-btn
                         :disabled="true"
                         :rounded="true"
@@ -23,17 +19,10 @@
                         :small="true"
                         color="primary"
                         class="step-btn"
-                        >02 PASO</w-btn
-                    >
-                    <p class="body subtitle-md bold md:ml-5">
-                        Resultado Final
-                    </p>
+                    >02 PASO</w-btn>
+                    <p class="body subtitle-md bold md:ml-5">Resultado Final</p>
                     <div class="w-full md:px-5">
-                        <progress
-                            value="100"
-                            max="100"
-                            class="amc-progress"
-                        ></progress>
+                        <progress value="100" max="100" class="amc-progress"></progress>
                     </div>
                 </div>
                 <p class="body bold ml-3 md:ml-5 my-5">OFERTA</p>
@@ -70,50 +59,75 @@
                         </tr>
                     </table>
                 </div>
-                <div class="amc-table-container mt-5">
+                <div class="amc-table-container mt-5 hidden md:block">
                     <table class="amc-table">
                         <tr>
                             <th></th>
                             <th>Máximo</th>
                             <th>Mínimo</th>
-                            <th class="hidden-cell">Promedio</th>
-                            <th class="hidden-cell">Desviación Estandar</th>
+                            <th>Promedio</th>
+                            <th>Desviación Estandar</th>
                         </tr>
                         <tr>
                             <td>OFERTAS</td>
                             <td>Miraflores</td>
                             <td>105045614</td>
-                            <td class="hidden-cell">201</td>
-                            <td class="hidden-cell">480</td>
+                            <td>201</td>
+                            <td>480</td>
                         </tr>
                         <tr>
                             <td>VENDIDOS</td>
                             <td>Miraflores</td>
                             <td>852568840</td>
-                            <td class="hidden-cell">2010</td>
-                            <td class="hidden-cell">470</td>
+                            <td>2010</td>
+                            <td>470</td>
                         </tr>
                     </table>
                 </div>
+                <div class="amc-table-container mt-5 block md:hidden">
+                    <table class="amc-table">
+                        <tr>
+                            <th></th>
+                            <th>Mínimo</th>
+                        </tr>
+                        <tr>
+                            <td>OFERTAS</td>
+                            <td>105045614</td>
+                        </tr>
+                        <tr>
+                            <td>VENDIDOS</td>
+                            <td>852568840</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="amc-table-container mt-5 block md:hidden">
+                    <table class="amc-table">
+                        <tr>
+                            <th>Promedio</th>
+                            <th>Desviación Estandar</th>
+                        </tr>
+                        <tr>
+                            <td>201</td>
+                            <td>480</td>
+                        </tr>
+                        <tr>
+                            <td>2010</td>
+                            <td>470</td>
+                        </tr>
+                    </table>
+                </div>
+
                 <div class="w-full md:px-5 my-10">
                     <div class="primary alert">
-                        <div
-                            class="flex flex-row justify-center md:justify-between flex-wrap"
-                        >
+                        <div class="flex flex-row justify-center md:justify-between flex-wrap">
                             <div class="w-full md:w-auto">
-                                <p
-                                    class="body bold white-text text-center md:text-left"
-                                >
+                                <p class="body bold white-text text-center md:text-left">
                                     PRECIO SUGERIDO:
                                     <span class="hidden md:block">S/100</span>
                                 </p>
                             </div>
                             <div class="w-full md:w-auto">
-                                <p
-                                    class="body bold white-text text-center md:text-right"
-                                >
-                                    M2:1245
-                                </p>
+                                <p class="body bold white-text text-center md:text-right">M2:1245</p>
                             </div>
                         </div>
                     </div>
@@ -136,8 +150,7 @@
                                     :large="true"
                                     :dark="true"
                                     color="secondary"
-                                    >DESCARGAR PDF</w-btn
-                                >
+                                >DESCARGAR PDF</w-btn>
                             </div>
                             <div class="w-full md:w-1/2 px-2">
                                 <w-btn
@@ -145,8 +158,8 @@
                                     :large="true"
                                     :dark="true"
                                     color="primary"
-                                    >GUARDAR ANÁLISiS</w-btn
-                                >
+                                    type="submit"
+                                >GUARDAR ANÁLISiS</w-btn>
                             </div>
                         </div>
                     </div>
@@ -159,8 +172,8 @@
 <script>
 export default {
     data: () => ({
-        form: {},
-    }),
+        form: {}
+    })
 };
 </script>
 
