@@ -70,13 +70,13 @@ export default {
 .login {
     .login-container {
         padding: 75px 150px;
-
         .login-card {
             display: flex !important;
             flex-direction: row-reverse;
             justify-content: space-between;
             align-items: center;
             flex-wrap: nowrap;
+            max-width: 982px;
             .image,
             .card-text {
                 max-width: 50%;

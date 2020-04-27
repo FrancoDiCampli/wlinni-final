@@ -6,32 +6,36 @@
 
     -->
     <div class="register mb-20">
-        <div class="register-container">
-            <p class="subtitle bold white-text ml-5">Registro</p>
-            <div class="divider ml-5 mt-1"></div>
-            <p class="white-text mt-10 ml-5 hidden md:block">Crear una cuenta</p>
-            <w-card :shadow="false" class="mt-5 register-card">
-                <p class="text-center tertiary-text bold body subtitle-md">Registro Satisfactorio!</p>
-                <p class="text-center caption body-md">Sus datos fueron registrados</p>
-                <div class="flex flex-row justify-center my-10">
-                    <div class="w-2/3">
-                        <img src="/images/register.png" />
+        <div class="register-success-container">
+            <div class="responsive-register">
+                <p class="subtitle bold white-text ml-5">Registro</p>
+                <div class="divider ml-5 mt-1"></div>
+                <p class="white-text mt-10 ml-5 hidden md:block">Crear una cuenta</p>
+                <w-card :shadow="false" class="mt-5 register-card">
+                    <p
+                        class="text-center tertiary-text bold body subtitle-md"
+                    >Registro Satisfactorio!</p>
+                    <p class="text-center caption body-md">Sus datos fueron registrados</p>
+                    <div class="flex flex-row justify-center my-10">
+                        <div class="w-2/3">
+                            <img src="/images/register.png" />
+                        </div>
                     </div>
-                </div>
 
-                <p
-                    class="caption text-center"
-                >Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh</p>
-                <div class="flex flex-row justify-center">
-                    <w-btn
-                        @click="$router.push('/')"
-                        color="tertiary"
-                        :dark="true"
-                        class="register-btn"
-                        :fullwidth="windowWidth <= 768"
-                    >VOLVER AL INCIO</w-btn>
-                </div>
-            </w-card>
+                    <p
+                        class="caption text-center"
+                    >Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh</p>
+                    <div class="flex flex-row justify-center">
+                        <w-btn
+                            @click="$router.push('/')"
+                            color="tertiary"
+                            :dark="true"
+                            class="register-btn"
+                            :fullwidth="windowWidth <= 768"
+                        >VOLVER AL INCIO</w-btn>
+                    </div>
+                </w-card>
+            </div>
         </div>
     </div>
 </template>
@@ -57,35 +61,28 @@ export default {
 
 .register {
     margin-top: -20px;
-    .register-container {
+    .register-success-container {
         background-image: url("/images/banners/3.png");
         background-size: 100% 425px;
         background-repeat: no-repeat;
         background-position: top center;
-        padding: 75px 250px;
+        padding: 75px 0px;
         .divider {
             height: 0px;
             width: 32px;
             border: thin solid $tertiary;
         }
 
-        .register-card {
-            .card-text {
-                padding: 40px 95px;
-            }
-            .register-btn {
-                padding: 12px 56px;
-            }
-        }
-    }
-}
-
-@media (max-width: 1024px) {
-    .register {
-        .register-container {
+        .responsive-register {
+            width: 90%;
+            max-width: 768px;
+            margin: auto;
             .register-card {
                 .card-text {
-                    padding: 25px;
+                    padding: 40px 95px;
+                }
+                .register-btn {
+                    padding: 12px 56px;
                 }
             }
         }
@@ -94,8 +91,15 @@ export default {
 
 @media (max-width: 768px) {
     .register {
-        .register-container {
+        .register-success-container {
             padding: 45px 15px;
+            .responsive-register {
+                .register-card {
+                    .card-text {
+                        padding: 25px;
+                    }
+                }
+            }
         }
     }
 }

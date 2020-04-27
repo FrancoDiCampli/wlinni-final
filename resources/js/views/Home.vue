@@ -10,15 +10,15 @@
 
     <div class="home">
         <!-- BANNER PRINCIPAL -->
-        <w-parallax image="/images/banners/4.png" height="120">
+        <w-parallax image="/images/banners/4.png" :height="windowWidth <= 768 ? '100' : '130'">
             <div class="flex flex-row justify-between home-container">
-                <div class="w-3/3 md:w-1/3 self-center">
-                    <h1 class="home-title bold white-text">
-                        Profesionales inmobiliarios dedicados a usted
-                    </h1>
+                <div class="w-3/3 lg:w-1/3 self-center">
+                    <h1
+                        class="home-title bold white-text"
+                    >Profesionales inmobiliarios dedicados a usted</h1>
                 </div>
-                <div class="hidden md:block w-1/3"></div>
-                <div class="hidden md:block w-2/3 self-center">
+                <div class="hidden lg:block w-1/3"></div>
+                <div class="hidden lg:block w-2/3 self-center">
                     <w-card :shadow="false" class="banner-card">
                         <div class="flex flex-row items-center">
                             <h1 class="body bold white-text">Busqueda</h1>
@@ -61,44 +61,34 @@
                                 :fullwidth="true"
                                 color="tertiary"
                                 :dark="true"
-                                >Buscar</w-btn
-                            >
+                            >Buscar</w-btn>
                         </form>
                     </w-card>
                 </div>
             </div>
             <div class="parallax-tag">
                 <div
-                    class="flex flex-row justify-between flex-wrap md:flex-no-wrap"
+                    class="flex flex-row justify-center md:justify-start flex-wrap lg:flex-no-wrap"
                 >
-                    <div
-                        class="w-2/2 md:w-2/3 flex flex-row justify-center md:justify-start"
-                    >
-                        <w-icon
-                            icon="lock"
-                            h="45px"
-                            class="hidden md:block mt-3 mr-5"
-                        ></w-icon>
+                    <div class="w-2/2 md:w-2/3 flex flex-row justify-center md:justify-start">
+                        <w-icon icon="lock" h="45px" class="hidden md:block mt-3 mr-5"></w-icon>
                         <div>
                             <p
                                 class="body subtitle-md light white-text text-center md:text-left"
-                            >
-                                Eres Agente Inmobiliaria
-                            </p>
+                            >Eres Agente Inmobiliaria</p>
                             <p
                                 class="body tertiary-text text-center md:text-left"
-                            >
-                                solicíta tu cuenta en pocos minutos
-                            </p>
+                            >solicíta tu cuenta en pocos minutos</p>
                         </div>
                     </div>
                     <div class="hidden md:block md:w-1/3"></div>
-                    <div
-                        class="w-full md:w-1/3 mb-2 flex flex-row justify-center"
-                    >
-                        <w-btn color="secondary" :dark="true" :fullwidth="true"
-                            >INICIA TU CUENTA AHORA</w-btn
-                        >
+                    <div class="w-full md:w-1/3 mb-2 flex flex-row justify-center">
+                        <w-btn
+                            color="secondary"
+                            :dark="true"
+                            :fullwidth="true"
+                            style="max-height: 56px !important;"
+                        >INICIA TU CUENTA AHORA</w-btn>
                     </div>
                 </div>
             </div>
@@ -158,12 +148,12 @@
             <w-carousel
                 class="mt-10"
                 :background="windowWidth >= 768 ? '/images/banners/1.png' : ''"
-                :items="windowWidth >= 768 ? 3 : 1"
+                :items="carrouselItems"
                 :pagination="windowWidth < 768"
                 :navigation="windowWidth >= 768"
             >
                 <slide v-for="(card, i) in cards" :key="i">
-                    <div class="px-5">
+                    <div class="px-10 lg:px-5">
                         <w-card :image="card.image" hover="full-hover">
                             <template slot="image">
                                 <p class="bold">{{ card.direccion }}</p>
@@ -172,52 +162,34 @@
                             <template slot="state">
                                 <p class="white-text">{{ card.tipo }}</p>
                             </template>
+                            <br />
                             <p class="bold">{{ card.title }}</p>
                             <p>{{ card.body }}</p>
                             <p>Comisión</p>
                             <div class="flex flex-row justify-between">
                                 <p class="body bold">{{ card.comision }}</p>
-                                <p class="body bold tertiary-text">
-                                    {{ card.mes }}
-                                </p>
+                                <p class="body bold tertiary-text">{{ card.mes }}</p>
                             </div>
 
                             <template slot="footer">
                                 <div class="flex flex-row justify-between">
                                     <div class="flex flex-row justify-between">
                                         <div class="info-item">
-                                            <w-icon
-                                                icon="room-solid"
-                                                h="12px"
-                                            ></w-icon>
-                                            <p class="white-text">
-                                                {{ card.info.habitaciones }}
-                                            </p>
+                                            <w-icon icon="room-solid" h="12px"></w-icon>
+                                            <p class="white-text">{{ card.info.habitaciones }}</p>
                                         </div>
                                         <div class="info-item">
-                                            <w-icon
-                                                icon="bath-solid"
-                                                h="15px"
-                                            ></w-icon>
-                                            <p class="white-text">
-                                                {{ card.info.baños }}
-                                            </p>
+                                            <w-icon icon="bath-solid" h="15px"></w-icon>
+                                            <p class="white-text">{{ card.info.baños }}</p>
                                         </div>
                                         <div class="info-item">
-                                            <w-icon
-                                                icon="parking-solid"
-                                                h="12px"
-                                            ></w-icon>
-                                            <p class="white-text">
-                                                {{ card.info.estacionamiento }}
-                                            </p>
+                                            <w-icon icon="parking-solid" h="12px"></w-icon>
+                                            <p class="white-text">{{ card.info.estacionamiento }}</p>
                                         </div>
                                     </div>
                                     <div class="info-item">
                                         <w-icon icon="size" h="15px"></w-icon>
-                                        <p class="white-text">
-                                            {{ card.info.tamaño }}
-                                        </p>
+                                        <p class="white-text">{{ card.info.tamaño }}</p>
                                     </div>
                                 </div>
                             </template>
@@ -234,12 +206,12 @@
             <w-carousel
                 class="mt-10"
                 :background="windowWidth >= 768 ? '/images/banners/1.png' : ''"
-                :items="windowWidth >= 768 ? 3 : 1"
+                :items="carrouselItems"
                 :pagination="windowWidth < 768"
                 :navigation="windowWidth >= 768"
             >
                 <slide v-for="(card, i) in cards" :key="i">
-                    <div class="px-5">
+                    <div class="px-10 lg:px-5">
                         <w-card :image="card.image" hover="full-hover">
                             <template slot="image">
                                 <p class="bold">{{ card.direccion }}</p>
@@ -253,47 +225,28 @@
                             <p>Comisión</p>
                             <div class="flex flex-row justify-between">
                                 <p class="body bold">{{ card.comision }}</p>
-                                <p class="body bold tertiary-text">
-                                    {{ card.mes }}
-                                </p>
+                                <p class="body bold tertiary-text">{{ card.mes }}</p>
                             </div>
 
                             <template slot="footer">
                                 <div class="flex flex-row justify-between">
                                     <div class="flex flex-row justify-between">
                                         <div class="info-item">
-                                            <w-icon
-                                                icon="room-solid"
-                                                h="12px"
-                                            ></w-icon>
-                                            <p class="white-text">
-                                                {{ card.info.habitaciones }}
-                                            </p>
+                                            <w-icon icon="room-solid" h="12px"></w-icon>
+                                            <p class="white-text">{{ card.info.habitaciones }}</p>
                                         </div>
                                         <div class="info-item">
-                                            <w-icon
-                                                icon="bath-solid"
-                                                h="15px"
-                                            ></w-icon>
-                                            <p class="white-text">
-                                                {{ card.info.baños }}
-                                            </p>
+                                            <w-icon icon="bath-solid" h="15px"></w-icon>
+                                            <p class="white-text">{{ card.info.baños }}</p>
                                         </div>
                                         <div class="info-item">
-                                            <w-icon
-                                                icon="parking-solid"
-                                                h="12px"
-                                            ></w-icon>
-                                            <p class="white-text">
-                                                {{ card.info.estacionamiento }}
-                                            </p>
+                                            <w-icon icon="parking-solid" h="12px"></w-icon>
+                                            <p class="white-text">{{ card.info.estacionamiento }}</p>
                                         </div>
                                     </div>
                                     <div class="info-item">
                                         <w-icon icon="size" h="15px"></w-icon>
-                                        <p class="white-text">
-                                            {{ card.info.tamaño }}
-                                        </p>
+                                        <p class="white-text">{{ card.info.tamaño }}</p>
                                     </div>
                                 </div>
                             </template>
@@ -306,8 +259,7 @@
                     :dark="true"
                     :large="true"
                     @click="$router.push('/inmuebles')"
-                    >VER MÁS PROPIEDADES</w-btn
-                >
+                >VER MÁS PROPIEDADES</w-btn>
             </div>
             <!-- AGENTES -->
             <div class="flex flex-row justify-center mt-20">
@@ -326,13 +278,13 @@
             </div>
             <w-carousel
                 :background="windowWidth >= 768 ? '/images/banners/1.png' : ''"
-                :items="windowWidth >= 768 ? 4 : 1"
+                :items="carrouselItemsAgentes"
                 :pagination="windowWidth < 768"
                 :navigation="windowWidth >= 768"
                 class="agent-carousel mt-10"
             >
                 <slide v-for="(agent, i) in agents" :key="i">
-                    <div class="px-5">
+                    <div class="px-10 lg:px-5">
                         <w-card :image="agent.image" hover="top-hover">
                             <template slot="image">
                                 <div style="margin-top: 160px;">
@@ -340,30 +292,16 @@
                                         <div
                                             class="w-full flex flex-row justify-between items-center px-8"
                                         >
-                                            <w-icon
-                                                icon="mail-white"
-                                                h="16px"
-                                            ></w-icon>
-                                            <w-icon
-                                                icon="facebook-white"
-                                                h="20px"
-                                            ></w-icon>
-                                            <w-icon
-                                                icon="instagram-white"
-                                                h="18px"
-                                            ></w-icon>
-                                            <w-icon
-                                                icon="twitter-white"
-                                                h="18px"
-                                            ></w-icon>
+                                            <w-icon icon="mail-white" h="16px"></w-icon>
+                                            <w-icon icon="facebook-white" h="20px"></w-icon>
+                                            <w-icon icon="instagram-white" h="18px"></w-icon>
+                                            <w-icon icon="twitter-white" h="18px"></w-icon>
                                         </div>
                                     </div>
                                 </div>
                             </template>
                             <div class="flex flex-row justify-between">
-                                <div
-                                    class="w-auto flex flex-row justify-between self-center"
-                                >
+                                <div class="w-auto flex flex-row justify-between self-center">
                                     <w-icon
                                         style="margin: 0px 2px !important;"
                                         icon="star-brown"
@@ -388,25 +326,15 @@
                                 <p
                                     class="bold text-center"
                                     style="white-space: nowrap;"
-                                >
-                                    {{ agent.name }}
-                                </p>
+                                >{{ agent.name }}</p>
                             </div>
                             <hr style="border-color: #9e9e9e;" />
-                            <div
-                                class="flex flex-row justify-center items-center mt-2"
-                            >
-                                <w-icon
-                                    icon="phone-brown"
-                                    h="13px"
-                                    class="mr-2"
-                                ></w-icon>
+                            <div class="flex flex-row justify-center items-center mt-2">
+                                <w-icon icon="phone-brown" h="13px" class="mr-2"></w-icon>
                                 <p>{{ agent.tel }}</p>
                             </div>
                             <template slot="footer">
-                                <p class="text-center white-text">
-                                    {{ agent.posts }} Pub. Activas
-                                </p>
+                                <p class="text-center white-text">{{ agent.posts }} Pub. Activas</p>
                             </template>
                         </w-card>
                     </div>
@@ -417,17 +345,9 @@
             <div class="publi-banner mt-20">
                 <div class="flex flex-row justify-center md:justify-end py-16">
                     <div class="flex flex-col justify-center items-center">
-                        <w-icon
-                            icon="lock-transparent"
-                            h="217px"
-                            class="absolute"
-                        ></w-icon>
-                        <p class="subtitle light white-text">
-                            Plataforma con Análisis
-                        </p>
-                        <p class="subtitle bold tertiary-text">
-                            de Mercado Comparativo
-                        </p>
+                        <w-icon icon="lock-transparent" h="217px" class="absolute"></w-icon>
+                        <p class="subtitle light white-text">Plataforma con Análisis</p>
+                        <p class="subtitle bold tertiary-text">de Mercado Comparativo</p>
                     </div>
                 </div>
             </div>
@@ -439,18 +359,14 @@
         <div class="divider"></div>
         <div class="flex flex-row justify-between flex-wrap px-10 mt-10">
             <div
-                class="w-full md:w-1/3 p-5 px-0 md:px-5"
+                class="w-full md:w-1/2 lg:w-1/3 p-5 px-0 md:px-5"
                 v-for="(noti, i) in news"
                 :key="i"
             >
                 <w-card :image="noti.image" imageHeight="200px" state="tile">
                     <template slot="state">
-                        <p class="body bold white-text">
-                            {{ parseDate(noti.date).day }}
-                        </p>
-                        <p class="caption bold white-text">
-                            {{ parseDate(noti.date).month }}
-                        </p>
+                        <p class="body bold white-text">{{ parseDate(noti.date).day }}</p>
+                        <p class="caption bold white-text">{{ parseDate(noti.date).month }}</p>
                     </template>
                     <p class="body bold mt-5">{{ noti.title }}</p>
                     <p>{{ noti.body }}</p>
@@ -461,44 +377,32 @@
         <!-- BANNER ESTADISTICAS -->
         <div class="graph-banner mt-20">
             <div class="flex flex-row justify-between flex-wrap">
-                <div class="w-full md:mt-0 md:w-1/4">
+                <div class="w-full md:mt-20 md:w-2/4 lg:mt-0 lg:w-1/4">
                     <div class="flex flex-col justify-center items-center">
                         <w-icon icon="house-price" h="130px"></w-icon>
-                        <p class="subtitle title-md bold white-text mt-5">
-                            755 300
-                        </p>
-                        <p class="caption bold white-text">
-                            TRANSACCIONES REALIZADAS
-                        </p>
+                        <p class="subtitle title-md bold white-text mt-5">755 300</p>
+                        <p class="caption bold white-text">TRANSACCIONES REALIZADAS</p>
                     </div>
                 </div>
-                <div class="w-full mt-20 md:mt-0 md:w-1/4">
+                <div class="w-full mt-20 md:w-2/4 lg:mt-0 lg:w-1/4">
                     <div class="flex flex-col justify-center items-center">
                         <w-icon icon="house-care" h="130px"></w-icon>
-                        <p class="subtitle title-md bold white-text mt-5">
-                            17 620
-                        </p>
+                        <p class="subtitle title-md bold white-text mt-5">17 620</p>
                         <p class="caption bold white-text">AGENTES EN LINEA</p>
                     </div>
                 </div>
-                <div class="w-full mt-20 md:mt-0 md:w-1/4">
+                <div class="w-full mt-20 md:w-2/4 lg:mt-0 lg:w-1/4">
                     <div class="flex flex-col justify-center items-center">
                         <w-icon icon="building" h="130px"></w-icon>
-                        <p class="subtitle title-md bold white-text mt-5">
-                            790
-                        </p>
+                        <p class="subtitle title-md bold white-text mt-5">790</p>
                         <p class="caption bold white-text">INMOBILIARIA</p>
                     </div>
                 </div>
-                <div class="w-full mt-20 md:mt-0 md:w-1/4">
+                <div class="w-full mt-20 md:w-2/4 lg:mt-0 lg:w-1/4">
                     <div class="flex flex-col justify-center items-center">
                         <w-icon icon="house-graph" h="130px"></w-icon>
-                        <p class="subtitle title-md bold white-text mt-5">
-                            1 580 715
-                        </p>
-                        <p class="caption bold white-text">
-                            MONTOS DE TRANSACCIÓN
-                        </p>
+                        <p class="subtitle title-md bold white-text mt-5">1 580 715</p>
+                        <p class="caption bold white-text">MONTOS DE TRANSACCIÓN</p>
                     </div>
                 </div>
             </div>
@@ -528,8 +432,8 @@ export default {
                     habitaciones: 3,
                     baños: 2,
                     estacionamiento: 2,
-                    tamaño: "120m",
-                },
+                    tamaño: "120m"
+                }
             },
             {
                 tipo: "En Venta",
@@ -545,8 +449,8 @@ export default {
                     habitaciones: 3,
                     baños: 2,
                     estacionamiento: 2,
-                    tamaño: "120m",
-                },
+                    tamaño: "120m"
+                }
             },
             {
                 tipo: "En Venta",
@@ -562,8 +466,8 @@ export default {
                     habitaciones: 3,
                     baños: 2,
                     estacionamiento: 2,
-                    tamaño: "120m",
-                },
+                    tamaño: "120m"
+                }
             },
             {
                 tipo: "En Venta",
@@ -579,8 +483,8 @@ export default {
                     habitaciones: 3,
                     baños: 2,
                     estacionamiento: 2,
-                    tamaño: "120m",
-                },
+                    tamaño: "120m"
+                }
             },
             {
                 tipo: "En Venta",
@@ -596,8 +500,8 @@ export default {
                     habitaciones: 3,
                     baños: 2,
                     estacionamiento: 2,
-                    tamaño: "120m",
-                },
+                    tamaño: "120m"
+                }
             },
             {
                 tipo: "En Venta",
@@ -613,8 +517,8 @@ export default {
                     habitaciones: 3,
                     baños: 2,
                     estacionamiento: 2,
-                    tamaño: "120m",
-                },
+                    tamaño: "120m"
+                }
             },
             {
                 tipo: "En Venta",
@@ -630,8 +534,8 @@ export default {
                     habitaciones: 3,
                     baños: 2,
                     estacionamiento: 2,
-                    tamaño: "120m",
-                },
+                    tamaño: "120m"
+                }
             },
             {
                 tipo: "En Venta",
@@ -647,8 +551,8 @@ export default {
                     habitaciones: 3,
                     baños: 2,
                     estacionamiento: 2,
-                    tamaño: "120m",
-                },
+                    tamaño: "120m"
+                }
             },
             {
                 tipo: "En Venta",
@@ -664,59 +568,59 @@ export default {
                     habitaciones: 3,
                     baños: 2,
                     estacionamiento: 2,
-                    tamaño: "120m",
-                },
-            },
+                    tamaño: "120m"
+                }
+            }
         ],
         agents: [
             {
                 image: "/images/rostros/1.png",
                 name: "PETER LLANOS BARNACHEA",
                 tel: "+ 51 994781355",
-                posts: 10,
+                posts: 10
             },
             {
                 image: "/images/rostros/2.png",
                 name: "CHRISTOPHER PAKULLA",
                 tel: "+ 51 994781355",
-                posts: 10,
+                posts: 10
             },
             {
                 image: "/images/rostros/3.png",
                 name: "VLADIMIR BABIC",
                 tel: "+ 51 994781355",
-                posts: 10,
+                posts: 10
             },
             {
                 image: "/images/rostros/4.png",
                 name: "MARIUSZ CIESLA",
                 tel: "+ 51 994781355",
-                posts: 10,
+                posts: 10
             },
             {
                 image: "/images/rostros/1.png",
                 name: "PETER LLANOS BARNACHEA",
                 tel: "+ 51 994781355",
-                posts: 10,
+                posts: 10
             },
             {
                 image: "/images/rostros/2.png",
                 name: "CHRISTOPHER PAKULLA",
                 tel: "+ 51 994781355",
-                posts: 10,
+                posts: 10
             },
             {
                 image: "/images/rostros/3.png",
                 name: "VLADIMIR BABIC",
                 tel: "+ 51 994781355",
-                posts: 10,
+                posts: 10
             },
             {
                 image: "/images/rostros/4.png",
                 name: "MARIUSZ CIESLA",
                 tel: "+ 51 994781355",
-                posts: 10,
-            },
+                posts: 10
+            }
         ],
         news: [
             {
@@ -724,24 +628,46 @@ export default {
                 image: "/images/departamentos/6.jpg",
                 title: "Curso introductorio a los indicadores de ventas",
                 body:
-                    "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio...",
+                    "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio..."
             },
             {
                 date: "2020-02-18",
                 image: "/images/departamentos/7.jpg",
                 title: "Curso introductorio a los indicadores de ventas",
                 body:
-                    "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio...",
+                    "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio..."
             },
             {
                 date: "2020-03-31",
                 image: "/images/departamentos/8.jpg",
                 title: "Curso introductorio a los indicadores de ventas",
                 body:
-                    "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio...",
-            },
-        ],
+                    "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio..."
+            }
+        ]
     }),
+
+    computed: {
+        carrouselItems() {
+            if (this.windowWidth >= 768) {
+                return this.windowWidth >= 1024 ? 3 : 2;
+            } else {
+                return 1;
+            }
+        },
+
+        carrouselItemsAgentes() {
+            if (this.windowWidth >= 640) {
+                if (this.windowWidth >= 1024) {
+                    return this.windowWidth >= 1280 ? 4 : 3;
+                } else {
+                    return this.windowWidth >= 1024 ? 3 : 2;
+                }
+            } else {
+                return 1;
+            }
+        }
+    },
 
     mounted() {
         window.addEventListener("resize", () => {
@@ -753,12 +679,12 @@ export default {
         parseDate(date) {
             let parseDate = {
                 day: moment(date).format("DD"),
-                month: moment(date).format("MMM"),
+                month: moment(date).format("MMM")
             };
 
             return parseDate;
-        },
-    },
+        }
+    }
 };
 </script>
 
@@ -865,16 +791,32 @@ export default {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .home {
         .home-container {
-            padding: 128px 48px 0px 48px;
+            padding: 165px 48px 0px 48px;
             .home-title {
                 font-size: 45px;
                 font-weight: bold;
                 text-align: center;
                 color: white;
             }
+        }
+    }
+
+    .parallax-tag {
+        bottom: -200px !important;
+    }
+
+    .home-fix {
+        margin-bottom: 200px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .home {
+        .home-container {
+            padding: 128px 48px 0px 48px;
         }
     }
 
@@ -885,7 +827,7 @@ export default {
     }
 
     .parallax-tag {
-        bottom: -230px !important;
+        bottom: -190px !important;
         left: 0 !important;
         width: 100% !important;
         border-top: none !important;

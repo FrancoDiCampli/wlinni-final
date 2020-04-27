@@ -2,10 +2,6 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "../views/Home";
 
-// BORRAR________________________
-import Test from "../views/Test";
-// ______________________________
-
 // AUTH
 import Login from "../views/auth/Login";
 import Register from "../views/auth/Register";
@@ -43,23 +39,10 @@ Vue.use(Router);
 export default new Router({
     mode: "history",
     routes: [
-        // BORRAR___________
-        {
-            path: "/test",
-            name: "test",
-            component: Test
-        },
-        // _________________
-
         {
             path: "/",
             name: "home",
             component: Home
-        },
-        {
-            path: "/test",
-            name: "test",
-            component: AMC2
         },
 
         // AUTH

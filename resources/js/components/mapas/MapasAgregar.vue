@@ -34,9 +34,9 @@ export default {
         places: [],
         currentPlace: null,
         markerOptions: {
-            url: "/images/lock-full.png",
-            size: { width: 20, height: 35, f: "px", b: "px" },
-            scaledSize: { width: 15, height: 25, f: "px", b: "px" }
+            url: "/images/address-red.png",
+            size: { width: 22.5, height: 31.5, f: "px", b: "px" },
+            scaledSize: { width: 22.5, height: 31.5, f: "px", b: "px" }
         },
 
         infoWindowPos: {

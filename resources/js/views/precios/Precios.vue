@@ -14,7 +14,7 @@
                 <br />
                 <div>
                     <w-carousel
-                        :items="windowWidth <= 764 ? 1 : 3"
+                        :items="carrouselItems"
                         :pagination="true"
                         :navigation="false"
                         class="custom-carousel"
@@ -62,7 +62,7 @@
                 </div>
                 <div class="my-8">
                     <w-carousel
-                        :items="windowWidth <= 764 ? 1 : 3"
+                        :items="carrouselItems"
                         :pagination="true"
                         :navigation="false"
                         class="custom-carousel"
@@ -147,6 +147,16 @@ export default {
                 }
             ]
         };
+    },
+
+    computed: {
+        carrouselItems() {
+            if (this.windowWidth >= 768) {
+                return this.windowWidth >= 1024 ? 3 : 2;
+            } else {
+                return 1;
+            }
+        }
     },
 
     mounted() {

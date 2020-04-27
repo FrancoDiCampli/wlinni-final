@@ -2,14 +2,14 @@ import Vue from "vue";
 
 Vue.component("w-navbar", {
   data: () => ({
-    scroll: false
+    scroll: false,
   }),
 
   props: {
     main: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
 
   template: `
@@ -31,16 +31,14 @@ Vue.component("w-navbar", {
       this.scroll ? (navClass += " nav-hidden") : "";
       this.main ? (navClass += " main-nav") : "";
       return navClass;
-    }
+    },
   },
 
   methods: {
     handleScroll(evt, el) {
-      window.scrollY > window.innerHeight / 2
-        ? (this.scroll = true)
-        : (this.scroll = false);
-    }
-  }
+      window.scrollY > 0 ? (this.scroll = true) : (this.scroll = false);
+    },
+  },
 });
 
 Vue.component("w-top-bar", {
@@ -48,7 +46,7 @@ Vue.component("w-top-bar", {
         <div class="top-bar">
             <slot></slot>
         </div>
-    `
+    `,
 });
 
 Vue.component("w-bottom-bar", {
@@ -56,5 +54,5 @@ Vue.component("w-bottom-bar", {
           <div class="bottom-bar">
               <slot></slot>
           </div>
-      `
+      `,
 });

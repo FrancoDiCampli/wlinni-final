@@ -31,7 +31,7 @@
                                 :fullwidth="true"
                                 color="secondary"
                                 :dark="true"
-                                @click="filtrar = false"
+                                @click="showFilters = false"
                             >filtrar</w-btn>
                         </div>
                     </div>
@@ -63,7 +63,7 @@
                             class="lg:hidden"
                             :dark="true"
                             color="secondary"
-                            @click="filtrar = true"
+                            @click="showFilters = true"
                         >filtrar</w-btn>
                         <br />
                         <div class="flex flex-row justify-between flex-wrap">
@@ -138,7 +138,8 @@ import FiltroInmueble from "../../components/inmuebles/FiltroInmueble";
 export default {
     data: () => ({
         page: 1,
-        filtrar: false,
+        showFilters: false,
+        windowWidth: window.innerWidth,
         cards: [
             {
                 tipo: "Alquiler",
@@ -298,6 +299,27 @@ export default {
 
     components: {
         FiltroInmueble
+    },
+
+    computed: {
+        filtrar() {
+            if (this.showFilters) {
+                if (this.windowWidth >= 768) {
+                    this.showFilters = false;
+                    return false;
+                } else {
+                    return true;
+                }
+            } else {
+                return false;
+            }
+        }
+    },
+
+    mounted() {
+        window.addEventListener("resize", () => {
+            this.windowWidth = window.innerWidth;
+        });
     }
 };
 </script>

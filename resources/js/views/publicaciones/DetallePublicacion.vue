@@ -367,6 +367,7 @@ export default {
 .publicacion-detalle {
     .detalle-container {
         width: 90%;
+        max-width: 1180px;
         margin: auto;
 
         .m-btn {

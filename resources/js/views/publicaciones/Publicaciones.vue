@@ -13,7 +13,7 @@
     <div>
         <div class="publicaciones-container">
             <div class="flex flex-row justify-around">
-                <div class="w-3/12 hidden lg:block">
+                <div class="md:w-4/10 lg:w-3/12 hidden md:block">
                     <div>
                         <w-card :shadow="false">
                             <template slot="header">
@@ -41,24 +41,28 @@
                                 :fullwidth="true"
                                 color="secondary"
                                 :dark="true"
-                                @click="filtrar = false"
+                                @click="showFilters = false"
                             >filtrar</w-btn>
                         </div>
                     </div>
                 </div>
-                <div class="sm:w-full lg:w-9/12 px-6" v-else>
+                <div class="w-full md:w-6/10 lg:w-9/12 px-6" v-else>
                     <w-card :shadow="false">
                         <h1 class="subtitle bold lg:pl-3 ml-3">Listado de Publicaciones</h1>
                         <br />
                         <w-btn
-                            class="lg:hidden"
+                            class="md:hidden"
                             :dark="true"
                             color="secondary"
-                            @click="filtrar = true"
+                            @click="showFilters = true"
                         >filtrar</w-btn>
                         <br />
                         <div class="flex flex-row justify-between flex-wrap">
-                            <div class="sm:w-full lg:w-1/3 p-3" v-for="(card, i) in cards" :key="i">
+                            <div
+                                class="sm:w-full md:w-2/4 lg:w-1/3 p-3"
+                                v-for="(card, i) in cards"
+                                :key="i"
+                            >
                                 <w-card
                                     :image="card.foto"
                                     imageHeight="200px"
@@ -184,7 +188,8 @@ export default {
     data() {
         return {
             page: 1,
-            filtrar: false,
+            showFilters: false,
+            windowWidth: window.innerWidth,
             cards: [
                 {
                     showForm: false,
@@ -280,6 +285,27 @@ export default {
 
     components: {
         FiltroPublicacion
+    },
+
+    computed: {
+        filtrar() {
+            if (this.showFilters) {
+                if (this.windowWidth >= 768) {
+                    this.showFilters = false;
+                    return false;
+                } else {
+                    return true;
+                }
+            } else {
+                return false;
+            }
+        }
+    },
+
+    mounted() {
+        window.addEventListener("resize", () => {
+            this.windowWidth = window.innerWidth;
+        });
     }
 };
 </script>
