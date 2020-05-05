@@ -6,7 +6,6 @@
   height: 100%;
   border-radius: $full_radius;
   overflow: hidden;
-  cursor: pointer;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -17,6 +16,9 @@
     -webkit-box-shadow: none !important;
     -moz-box-shadow: none !important;
     box-shadow: none !important;
+  }
+  &.pointer-card {
+    cursor: pointer;
   }
 
   &:not(.active-state) {

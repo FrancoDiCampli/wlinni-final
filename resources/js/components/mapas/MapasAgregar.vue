@@ -6,7 +6,7 @@
                 <w-icon icon="address-secondary" h="16px"></w-icon>
             </div>
             <div class="autocomplete-btn">
-                <w-btn @click="addMarker" :rounded="true" :dark="true">agregar</w-btn>
+                <w-btn @click="search()" :rounded="true" :dark="true">Buscar</w-btn>
             </div>
         </div>
 
@@ -16,6 +16,7 @@
             :zoom="14"
             :options="mapOptions"
             style="width: 100%; height: 600px;"
+            @click="addMaker"
         >
             <gmap-marker :icon="markerOptions" :position="marker.position"></gmap-marker>
         </gmap-map>
@@ -31,7 +32,6 @@ export default {
             mapTypeControl: false,
             streetViewControl: false
         },
-        places: [],
         currentPlace: null,
         markerOptions: {
             url: "/images/address-red.png",
@@ -69,18 +69,26 @@ export default {
         setPlace(place) {
             this.currentPlace = place;
         },
-        addMarker() {
+
+        search() {
             if (this.currentPlace) {
-                const marker = {
+                this.center = {
                     lat: this.currentPlace.geometry.location.lat(),
                     lng: this.currentPlace.geometry.location.lng()
                 };
-                this.marker = { position: marker };
-                this.places.push(this.currentPlace);
-                this.center = marker;
-                this.currentPlace = null;
             }
         },
+
+        addMaker(e) {
+            const marker = {
+                lat: e.latLng.lat(),
+                lng: e.latLng.lng()
+            };
+            this.marker = { position: marker };
+            this.center = marker;
+            this.currentPlace = null;
+        },
+
         geolocate() {
             navigator.geolocation.getCurrentPosition(position => {
                 this.center = {

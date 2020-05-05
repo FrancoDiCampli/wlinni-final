@@ -13,3 +13,4 @@ import "./WPagination/WPagination";
 import "./WPanels/WPanels";
 import "./WParallax/WParallax";
 import "./WSnackbar/WSnackbar";
+// KAZMER MAXIMILIANO EZEQUIEL

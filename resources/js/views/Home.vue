@@ -10,15 +10,18 @@
 
     <div class="home">
         <!-- BANNER PRINCIPAL -->
-        <w-parallax image="/images/banners/4.png" :height="windowWidth <= 768 ? '100' : '130'">
-            <div class="flex flex-row justify-between home-container">
-                <div class="w-3/3 lg:w-1/3 self-center">
+
+        <w-parallax image="/images/banners/4.png" :height="parallaxHeight">
+            <div
+                class="flex flex-row justify-center lg:justify-between flex-wrap lg:flex-no-wrap home-container"
+            >
+                <div class="w-full md:w-2/3 lg:w-1/3 mb-10 lg:md-0 self-center">
                     <h1
                         class="home-title bold white-text"
                     >Profesionales inmobiliarios dedicados a usted</h1>
                 </div>
                 <div class="hidden lg:block w-1/3"></div>
-                <div class="hidden lg:block w-2/3 self-center">
+                <div class="w-full md:w-2/3 lg:w-2/3 self-center">
                     <w-card :shadow="false" class="banner-card">
                         <div class="flex flex-row items-center">
                             <h1 class="body bold white-text">Busqueda</h1>
@@ -70,7 +73,7 @@
                 <div
                     class="flex flex-row justify-center md:justify-start flex-wrap lg:flex-no-wrap"
                 >
-                    <div class="w-2/2 md:w-2/3 flex flex-row justify-center md:justify-start">
+                    <div class="w-2/2 lg:w-2/3 flex flex-row justify-center md:justify-start">
                         <w-icon icon="lock" h="45px" class="hidden md:block mt-3 mr-5"></w-icon>
                         <div>
                             <p
@@ -154,7 +157,7 @@
             >
                 <slide v-for="(card, i) in cards" :key="i">
                     <div class="px-10 lg:px-5">
-                        <w-card :image="card.image" hover="full-hover">
+                        <w-card :image="card.image" :pointer="true" hover="full-hover">
                             <template slot="image">
                                 <p class="bold">{{ card.direccion }}</p>
                                 <p class="mt-5">{{ card.descripcion }}</p>
@@ -212,7 +215,7 @@
             >
                 <slide v-for="(card, i) in cards" :key="i">
                     <div class="px-10 lg:px-5">
-                        <w-card :image="card.image" hover="full-hover">
+                        <w-card :image="card.image" :pointer="true" hover="full-hover">
                             <template slot="image">
                                 <p class="bold">{{ card.direccion }}</p>
                                 <p class="mt-5">{{ card.descripcion }}</p>
@@ -285,7 +288,7 @@
             >
                 <slide v-for="(agent, i) in agents" :key="i">
                     <div class="px-10 lg:px-5">
-                        <w-card :image="agent.image" hover="top-hover">
+                        <w-card :image="agent.image" :pointer="true" hover="top-hover">
                             <template slot="image">
                                 <div style="margin-top: 160px;">
                                     <div class="flex flex-row justify-center">
@@ -363,7 +366,7 @@
                 v-for="(noti, i) in news"
                 :key="i"
             >
-                <w-card :image="noti.image" imageHeight="200px" state="tile">
+                <w-card :image="noti.image" :pointer="true" imageHeight="200px" state="tile">
                     <template slot="state">
                         <p class="body bold white-text">{{ parseDate(noti.date).day }}</p>
                         <p class="caption bold white-text">{{ parseDate(noti.date).month }}</p>
@@ -648,6 +651,14 @@ export default {
     }),
 
     computed: {
+        parallaxHeight() {
+            if (this.windowWidth >= 768) {
+                return this.windowWidth <= 1024 ? "150" : "140";
+            } else {
+                return "130";
+            }
+        },
+
         carrouselItems() {
             if (this.windowWidth >= 768) {
                 return this.windowWidth >= 1024 ? 3 : 2;
@@ -805,11 +816,13 @@ export default {
     }
 
     .parallax-tag {
-        bottom: -200px !important;
+        bottom: -216px !important;
+        width: 95% !important;
+        left: 2.5% !important;
     }
 
     .home-fix {
-        margin-bottom: 200px !important;
+        margin-bottom: 250px !important;
     }
 }
 

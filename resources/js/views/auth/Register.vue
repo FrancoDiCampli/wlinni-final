@@ -1,5 +1,5 @@
 <template>
-    <!-- 
+    <!--
 
         registro-sin-codigo (https://xd.adobe.com/view/b3577435-af55-46c5-4321-42f0fe99b140-c566/screen/7c7bfe78-40ab-441b-b500-9cf1297f15ff/registro-sin-codigo)
         registro-con-codigo (https://xd.adobe.com/view/b3577435-af55-46c5-4321-42f0fe99b140-c566/screen/1c2a9608-f90b-48de-9ff4-7e247249a814/registro-con-codigo)
@@ -46,6 +46,14 @@
                                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuadas.</p>
                                 </template>
                             </w-input>
+
+                            <w-select
+                                label="TIPO DE EMPRESA"
+                                placeholder="Tipo Empresa"
+                                :options="['Empresa', 'Asesor']"
+                                v-model="form.tipoempresa"
+                            ></w-select>
+
                             <w-input
                                 v-model="form.phone"
                                 label="Número Teléfono"
@@ -56,6 +64,29 @@
                                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuadas.</p>
                                 </template>
                             </w-input>
+
+                            <div class="my-5">
+                                <p class="bold ml-5">AFILIARSE</p>
+                                <w-switch
+                                    activeLabel="Si"
+                                    inactiveLabel="No"
+                                    v-model="afiliarse"
+                                    color="secondary"
+                                ></w-switch>
+                                <w-input
+                                    v-model="form.afiliado"
+                                    v-if="afiliarse"
+                                    label="Codigo"
+                                    placeholder="Ingresar el codigo"
+                                    class="mt-5"
+                                >
+                                    <template slot="snackbar">
+                                        <p class="bold">Importante!</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuadas.</p>
+                                    </template>
+                                </w-input>
+                            </div>
+                            <br />
                             <w-textarea
                                 v-model="form.description"
                                 label="Ingresar breve descripción"
@@ -169,16 +200,28 @@
                                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuadas.</p>
                                 </template>
                             </w-input>
-                            <w-input
-                                v-model="form.dni"
-                                label="Ingresar documento de identidad"
-                                placeholder="Ingresar documento"
-                            >
-                                <template slot="snackbar">
-                                    <p class="bold">Importante!</p>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuadas.</p>
-                                </template>
-                            </w-input>
+                            <div class="my-5">
+                                <p class="bold ml-5">¿Posee usuario Wlinni?</p>
+                                <w-switch
+                                    activeLabel="Si"
+                                    inactiveLabel="No"
+                                    v-model="usuario"
+                                    color="secondary"
+                                ></w-switch>
+                                <w-input
+                                    v-model="form.usuario"
+                                    v-if="usuario"
+                                    label="Usuario"
+                                    placeholder="Ingresar el Usuario"
+                                    class="mt-5"
+                                >
+                                    <template slot="snackbar">
+                                        <p class="bold">Importante!</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuadas.</p>
+                                    </template>
+                                </w-input>
+                            </div>
+                            <br />
                             <w-textarea
                                 v-model="form.description"
                                 label="Ingresar breve descripción"
@@ -206,7 +249,9 @@ export default {
     data: () => ({
         code: false,
         form: {},
-        windowWidth: window.innerWidth
+        windowWidth: window.innerWidth,
+        afiliarse: false,
+        usuario: false
     }),
 
     mounted() {

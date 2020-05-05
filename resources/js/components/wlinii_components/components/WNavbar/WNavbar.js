@@ -1,18 +1,18 @@
 import Vue from "vue";
 
 Vue.component("w-navbar", {
-  data: () => ({
-    scroll: false,
-  }),
+    data: () => ({
+        scroll: false
+    }),
 
-  props: {
-    main: {
-      type: Boolean,
-      default: false,
+    props: {
+        main: {
+            type: Boolean,
+            default: false
+        }
     },
-  },
 
-  template: `
+    template: `
         <div class="nav-container">
             <nav
                 ref="nav"
@@ -25,34 +25,34 @@ Vue.component("w-navbar", {
         </div>
     `,
 
-  computed: {
-    navbarClass() {
-      let navClass = "navbar";
-      this.scroll ? (navClass += " nav-hidden") : "";
-      this.main ? (navClass += " main-nav") : "";
-      return navClass;
+    computed: {
+        navbarClass() {
+            let navClass = "navbar";
+            this.scroll ? (navClass += " nav-hidden") : "";
+            this.main ? (navClass += " main-nav") : "";
+            return navClass;
+        }
     },
-  },
 
-  methods: {
-    handleScroll(evt, el) {
-      window.scrollY > 0 ? (this.scroll = true) : (this.scroll = false);
-    },
-  },
+    methods: {
+        handleScroll(evt, el) {
+            window.scrollY > 0 ? (this.scroll = true) : (this.scroll = false);
+        }
+    }
 });
 
 Vue.component("w-top-bar", {
-  template: `
+    template: `
         <div class="top-bar">
             <slot></slot>
         </div>
-    `,
+    `
 });
 
 Vue.component("w-bottom-bar", {
-  template: `
+    template: `
           <div class="bottom-bar">
               <slot></slot>
           </div>
-      `,
+      `
 });

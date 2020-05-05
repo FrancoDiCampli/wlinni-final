@@ -100,7 +100,8 @@
                     <w-card :shadow="false" class="user-row">
                         <div class="flex flex-row justify-between">
                             <div class="w-1/2 flex flex-row justify-between flex-wrap">
-                                <div class="w-1/3 self-center px-0 md:px-5">
+                                <!-- BOTON -->
+                                <div class="w-1/2 xl:w-1/3 self-center px-0 md:px-5">
                                     <w-btn
                                         :color="user.state == 'AFILIADO' ? 'secondary' : 'primary'"
                                         :dark="true"
@@ -110,13 +111,16 @@
                                         style="margin: 0px;"
                                     >{{ user.state == 'AFILIADO' ? 'Desafiliar' : 'Afiliar' }}</w-btn>
                                 </div>
-                                <div class="w-1/3 flex flex-row justify-center px-5">
+                                <!-- ESTRELLAS -->
+                                <div
+                                    class="w-1/2 xl:w-1/3 md:hidden xl:flex flex-row justify-center px-1 md:px-5"
+                                >
                                     <w-btn
                                         :icon="true"
                                         v-for="i in 5"
                                         :key="i"
                                         :disabled="true"
-                                        style="margin: 2px;"
+                                        style="margin: 2px; background-color: transparent !important;"
                                     >
                                         <w-icon
                                             :icon="user.stars >= i ? 'star-brown' : 'star-grey'"
@@ -124,7 +128,8 @@
                                         ></w-icon>
                                     </w-btn>
                                 </div>
-                                <div class="w-1/3 self-center">
+                                <!-- NOMBRE Y FOTO -->
+                                <div class="w-1/2 xl:w-1/3 self-center">
                                     <div
                                         class="flex flex-row justify-center user-check mx-2"
                                         :class="user.state == 'AFILIADO' ? 'user-check-active' : ''"
@@ -238,13 +243,13 @@
                 <w-carousel
                     class="mt-10"
                     :background="windowWidth >= 768 ? '/images/banners/1.png' : ''"
-                    :items="windowWidth >= 768 ? 3 : 1"
+                    :items="carrouselItems"
                     :pagination="windowWidth < 768"
                     :navigation="windowWidth >= 768"
                 >
                     <slide v-for="(card, i) in cards" :key="i">
                         <div class="px-2">
-                            <w-card :image="card.image" hover="full-hover">
+                            <w-card :image="card.image" :pointer="true" hover="full-hover">
                                 <template slot="image">
                                     <p class="bold">{{ card.direccion }}</p>
                                     <p class="mt-5">{{ card.descripcion }}</p>
@@ -261,7 +266,7 @@
                                 </div>
 
                                 <template slot="footer">
-                                    <div class="flex flex-row justify-between">
+                                    <div class="flex flex-row justify-between flex-wrap">
                                         <div class="flex flex-row justify-between">
                                             <div class="info-item">
                                                 <w-icon icon="room-solid" h="12px"></w-icon>
@@ -513,6 +518,16 @@ export default {
         };
     },
 
+    computed: {
+        carrouselItems() {
+            if (this.windowWidth >= 768) {
+                return this.windowWidth >= 1024 ? 3 : 2;
+            } else {
+                return 1;
+            }
+        }
+    },
+
     mounted() {
         window.addEventListener("resize", () => {
             this.windowWidth = window.innerWidth;
@@ -529,8 +544,10 @@ export default {
     margin: auto;
 
     .brocker-img {
-        width: 290px;
+        width: 90%;
         height: 370px;
+        max-width: 290px;
+        max-height: 370px;
         background-image: url("/images/banners/3.png");
         background-repeat: no-repeat;
         background-position: top center;

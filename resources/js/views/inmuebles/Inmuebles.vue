@@ -11,7 +11,7 @@
     <div>
         <div class="inmuebles-container">
             <div class="flex flex-row justify-around gap-8">
-                <div class="w-3/12 hidden lg:block">
+                <div class="md:w-2/6 lg:w-3/12 hidden md:block">
                     <div>
                         <w-card :shadow="false">
                             <template slot="header">
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="sm:w-full lg:w-9/12 px-6" v-else>
+                <div class="w-full md:w-4/6 lg:w-9/12 px-6" v-else>
                     <w-card :shadow="false">
                         <div class="flex flex-row justify-between flex-wrap ml-3">
                             <div class="lg:pl-3">
@@ -60,15 +60,19 @@
                         </div>
                         <br />
                         <w-btn
-                            class="lg:hidden"
+                            class="md:hidden"
                             :dark="true"
                             color="secondary"
                             @click="showFilters = true"
                         >filtrar</w-btn>
                         <br />
                         <div class="flex flex-row justify-between flex-wrap">
-                            <div class="sm:w-full lg:w-1/3 p-3" v-for="(card, i) in cards" :key="i">
-                                <w-card :image="card.image" hover="full-hover">
+                            <div
+                                class="sm:w-full md:w-2/4 lg:w-1/3 p-3"
+                                v-for="(card, i) in cards"
+                                :key="i"
+                            >
+                                <w-card :image="card.image" hover="full-hover" :pointer="true">
                                     <template slot="image">
                                         <p class="bold">{{ card.direccion }}</p>
                                         <br />
@@ -86,7 +90,7 @@
                                     </div>
 
                                     <template slot="footer">
-                                        <div class="flex flex-row justify-between">
+                                        <div class="flex flex-row justify-between flex-wrap">
                                             <div class="flex flex-row justify-between">
                                                 <div class="info-item">
                                                     <w-icon icon="room-solid" h="12px"></w-icon>

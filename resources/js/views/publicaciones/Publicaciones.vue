@@ -68,6 +68,7 @@
                                     imageHeight="200px"
                                     v-model="card.showForm"
                                     :activeContent="true"
+                                    :pointer="true"
                                 >
                                     <template slot="header" v-if="!card.showForm">
                                         <div class="flex flex-row justify-between">

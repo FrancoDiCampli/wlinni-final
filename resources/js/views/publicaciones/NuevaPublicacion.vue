@@ -604,26 +604,29 @@
                             <mapas-agregar></mapas-agregar>
                         </div>
                         <div class="mt-20">
+                            <!-- FOTOS -->
                             <div class="f-header">
                                 Fotos
                                 <span
                                     class="caption black-text"
-                                >({{ form.files.length }} de 20 disponibles)</span>
+                                >({{ form.photos.length }} de 20 disponibles)</span>
                             </div>
-                            <div class="flex flex-row justify-center flex-wrap">
-                                <div class="w-full md:w-1/2 px-2">
+
+                            <div class="w-full">
+                                <div class="flex flex-row justify-center">
                                     <w-card :shadow="false" class="upload-file-card">
                                         <div class="flex flex-col items-center">
                                             <w-icon icon="upload-image" h="137px"></w-icon>
                                             <p
                                                 class="text-center mt-5"
-                                            >Arrastra fotos desde tu computadora</p>
+                                            >Sube fotos desde tu computadora</p>
 
                                             <w-btn
                                                 color="#57BCD1"
                                                 :dark="true"
                                                 :rounded="true"
                                                 :small="true"
+                                                :disabled="form.photos.length >= 20 ? true : false"
                                             >
                                                 <p>seleccionar fotos</p>
                                                 <input
@@ -631,7 +634,9 @@
                                                     type="file"
                                                     ref="photoFile"
                                                     accept=".jpg, .jpeg, .png"
-                                                    @change="addFile('photoFile')"
+                                                    :disabled="form.photos.length >= 20 ? true : false"
+                                                    multiple="multiple"
+                                                    @change="addPhoto()"
                                                 />
                                             </w-btn>
                                             <p class="text-center mt-5">
@@ -639,20 +644,59 @@
                                                 (Tamaño máximo: 5Mb)
                                             </p>
                                         </div>
+                                        <div class="preview">
+                                            <w-carousel
+                                                :items="carrouselItems"
+                                                :pagination="windowWidth >= 1024 ? false : true"
+                                                :navigation="windowWidth >= 1024 ? true : false"
+                                                class="preview-carousel"
+                                            >
+                                                <slide
+                                                    class="preview-slide"
+                                                    v-for="(media, i) in form.photos"
+                                                    :key="i"
+                                                >
+                                                    <div class="preview-item">
+                                                        <div class="preview-source">
+                                                            <img :src="media.url" />
+                                                            <div
+                                                                class="delete-icon"
+                                                                @click="removePhoto(media)"
+                                                            >×</div>
+                                                        </div>
+                                                    </div>
+                                                </slide>
+                                            </w-carousel>
+                                        </div>
                                     </w-card>
                                 </div>
-                                <div class="w-full md:w-1/2 px-2">
+                            </div>
+
+                            <br />
+
+                            <!-- VIDEOS -->
+                            <div class="f-header">
+                                Videos
+                                <span
+                                    class="caption black-text"
+                                >({{ form.videos.length }} de 3 disponibles)</span>
+                            </div>
+
+                            <div class="w-full">
+                                <div class="flex flex-row justify-center">
                                     <w-card :shadow="false" class="upload-file-card">
                                         <div class="flex flex-col items-center">
                                             <w-icon icon="upload-video" h="137px"></w-icon>
                                             <p
                                                 class="text-center mt-5"
-                                            >Arrastra videos desde tu computadora</p>
+                                            >Sube videos desde tu computadora</p>
+
                                             <w-btn
                                                 color="#57BCD1"
                                                 :dark="true"
                                                 :rounded="true"
                                                 :small="true"
+                                                :disabled="form.videos.length >= 3 ? true : false"
                                             >
                                                 <p>seleccionar videos</p>
                                                 <input
@@ -660,17 +704,46 @@
                                                     type="file"
                                                     ref="videoFile"
                                                     accept=".mp4, .avi"
-                                                    @change="addFile('videoFile')"
+                                                    :disabled="form.videos.length >= 3 ? true : false"
+                                                    multiple="multiple"
+                                                    @change="addVideo()"
                                                 />
                                             </w-btn>
                                             <p class="text-center mt-5">
-                                                Formatos permitidos: MP4, AVI,
-                                                (Tamaño máximo: 50Mb)
+                                                Formatos permitidos: JPG, JPEG, PNG
+                                                (Tamaño máximo: 5Mb)
                                             </p>
+                                        </div>
+                                        <div class="preview">
+                                            <w-carousel
+                                                :items="carrouselItems"
+                                                :pagination="windowWidth >= 1024 ? false : true"
+                                                :navigation="windowWidth >= 1024 ? true : false"
+                                                class="preview-carousel"
+                                            >
+                                                <slide
+                                                    class="preview-slide"
+                                                    v-for="(media, i) in form.videos"
+                                                    :key="i"
+                                                >
+                                                    <div class="preview-item">
+                                                        <div class="preview-source">
+                                                            <video autoplay muted>
+                                                                <source :src="media.url" />
+                                                            </video>
+                                                            <div
+                                                                class="delete-icon"
+                                                                @click="removeVideo(media)"
+                                                            >×</div>
+                                                        </div>
+                                                    </div>
+                                                </slide>
+                                            </w-carousel>
                                         </div>
                                     </w-card>
                                 </div>
                             </div>
+
                             <div class="flex flex-row justify-center">
                                 <div class="w-full md:w-1/2 px-2 mt-10 mb-20">
                                     <p class="text-center">
@@ -709,12 +782,28 @@ export default {
             video: true
         },
         form: {
-            files: []
-        }
+            photos: [],
+            videos: []
+        },
+        test: false
     }),
 
     components: {
         MapasAgregar
+    },
+
+    computed: {
+        carrouselItems() {
+            if (this.windowWidth >= 768) {
+                if (this.windowWidth >= 1024) {
+                    return this.windowWidth >= 1280 ? 4 : 3;
+                } else {
+                    return this.windowWidth >= 1024 ? 3 : 2;
+                }
+            } else {
+                return 1;
+            }
+        }
     },
 
     mounted() {
@@ -724,11 +813,48 @@ export default {
     },
 
     methods: {
-        addFile(type) {
-            this.form.files.push({
-                file: this.$refs[type].files[0],
-                name: this.$refs[type].files[0].name
-            });
+        addPhoto() {
+            if (this.form.photos.length < 20) {
+                const files = this.$refs["photoFile"].files;
+                if (files.length <= Number(20 - this.form.photos.length)) {
+                    for (let i = 0; i < files.length; i++) {
+                        this.form.photos.push({
+                            file: files[i],
+                            url: URL.createObjectURL(files[i]),
+                            name: files[i].name
+                        });
+                    }
+                } else {
+                    alert("has superado el límite máximo de archivos.");
+                }
+            }
+        },
+
+        addVideo() {
+            if (this.form.videos.length < 3) {
+                const files = this.$refs["videoFile"].files;
+                if (files.length <= Number(3 - this.form.videos.length)) {
+                    for (let i = 0; i < files.length; i++) {
+                        this.form.videos.push({
+                            file: files[i],
+                            url: URL.createObjectURL(files[i]),
+                            name: files[i].name
+                        });
+                    }
+                } else {
+                    alert("has superado el límite máximo de archivos.");
+                }
+            }
+        },
+
+        removePhoto(file) {
+            let index = this.form.photos.indexOf(file);
+            this.form.photos.splice(index, 1);
+        },
+
+        removeVideo(file) {
+            let index = this.form.videos.indexOf(file);
+            this.form.videos.splice(index, 1);
         }
     }
 };
@@ -742,7 +868,6 @@ export default {
         padding: 25px 0px;
         margin: auto;
         .responsive-nueva-publicacion {
-            border: 2px solid red;
             width: 90%;
             max-width: 1180px;
             margin: auto;
@@ -785,6 +910,70 @@ export default {
                         }
                     }
                 }
+                .preview {
+                    .preview-carousel {
+                        .carousel {
+                            width: 95%;
+                            .VueCarousel {
+                                .VueCarousel-navigation {
+                                    button {
+                                        padding: 0px !important;
+                                    }
+                                    .VueCarousel-navigation-prev {
+                                        margin-left: 38px !important;
+                                    }
+                                    .VueCarousel-navigation-next {
+                                        margin-right: 38px !important;
+                                    }
+                                }
+                            }
+
+                            .preview-slide {
+                                padding: 12px;
+                                .preview-item {
+                                    display: flex;
+                                    flex-direction: row;
+                                    justify-content: center;
+                                    align-items: center;
+                                    cursor: pointer;
+
+                                    .preview-source {
+                                        position: relative;
+                                        width: 225px;
+                                        height: 125px;
+                                        overflow: hidden;
+                                        .delete-icon {
+                                            position: absolute;
+                                            width: 24px;
+                                            height: 24px;
+                                            font-size: 18px;
+                                            border-radius: 50%;
+                                            color: white;
+                                            background-color: $error;
+                                            flex-direction: row;
+                                            justify-content: center;
+                                            align-items: center;
+                                            top: 8px;
+                                            left: 8px;
+                                            cursor: pointer;
+                                            display: none;
+                                        }
+                                        &:hover {
+                                            .delete-icon {
+                                                display: flex;
+                                            }
+                                        }
+                                        img,
+                                        video {
+                                            width: auto;
+                                            height: auto;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
@@ -796,7 +985,6 @@ export default {
             padding: 25px 0px;
             margin: auto;
             .responsive-nueva-publicacion {
-                border: 2px solid red;
                 width: 90%;
                 max-width: 1180px;
                 margin: auto;

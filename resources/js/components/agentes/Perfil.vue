@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-row justify-between flex-wrap">
+    <div class="flex flex-row justify-between flex-wrap agent-component">
         <div class="w-full md:w-1/3">
             <div class="block md:hidden ml-1">
                 <p class="bold">PERFIL AGENTES</p>
@@ -7,7 +7,7 @@
             </div>
             <div class="flex flex-col items-center flex-wrap">
                 <div class="w-full flex flex-row justify-center">
-                    <img :src="agent.img" width="290" height="auto" />
+                    <img :src="agent.img" class="agent-img" />
                 </div>
                 <div class="hidden md:w-full md:flex md:flex-row md:justify-center md:flex-wrap">
                     <p class="my-3">Valoración del agente</p>
@@ -17,7 +17,7 @@
                             v-for="i in 5"
                             :key="i"
                             :disabled="true"
-                            style="margin: 2px;"
+                            style="margin: 2px; background-color: white !important;"
                         >
                             <w-icon :icon="agent.stars >= i ? 'star-brown' : 'star-grey'" h="14px"></w-icon>
                         </w-btn>
@@ -136,5 +136,12 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+.agent-component {
+    .agent-img {
+        width: 90%;
+        height: auto;
+        max-width: 290px;
+    }
+}
 </style>

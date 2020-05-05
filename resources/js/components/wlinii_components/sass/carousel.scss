@@ -19,6 +19,19 @@
           outline: none;
         }
       }
+      .VueCarousel-pagination {
+        .VueCarousel-dot-container {
+          .VueCarousel-dot {
+            width: 12px !important;
+            height: 12px !important;
+            padding: 7px !important;
+            background-color: black !important;
+            &.VueCarousel-dot--active {
+              background-color: $tertiary !important;
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -32,21 +45,6 @@
         width: 100%;
         padding: 0 12px;
         margin: auto;
-      }
-      .VueCarousel {
-        .VueCarousel-pagination {
-          .VueCarousel-dot-container {
-            .VueCarousel-dot {
-              width: 12px !important;
-              height: 12px !important;
-              padding: 7px !important;
-              background-color: black !important;
-              &.VueCarousel-dot--active {
-                background-color: $tertiary !important;
-              }
-            }
-          }
-        }
       }
     }
   }

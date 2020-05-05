@@ -12,14 +12,14 @@
                                 :fullwidth="true"
                                 color="secondary"
                                 :dark="true"
-                                @click="filtrar = false"
+                                @click="showFilters = false"
                             >filtrar</w-btn>
                         </div>
                     </div>
                 </div>
                 <div class="w-full px-6" v-else>
                     <w-card :shadow="false">
-                        <div class="float-filter w-3/12 hidden lg:block">
+                        <div class="float-filter w-4/12 lg:w-3/12 hidden md:block">
                             <w-card>
                                 <template slot="header">
                                     <p class="caption bold white-text">FILTROS APLICADOS</p>
@@ -32,10 +32,10 @@
 
                         <div class="pb-2 lg:pb-0">
                             <w-btn
-                                class="lg:hidden"
+                                class="md:hidden"
                                 :dark="true"
                                 color="secondary"
-                                @click="filtrar = true"
+                                @click="showFilters = true"
                             >filtrar</w-btn>
                         </div>
                         <br />
@@ -57,7 +57,8 @@ import Mapas from "../../components/mapas/Mapas";
 
 export default {
     data: () => ({
-        filtrar: false,
+        showFilters: false,
+        windowWidth: window.innerWidth,
         center: { lat: -12.1122095, lng: -77.047945 },
         markers: [
             {
@@ -89,6 +90,27 @@ export default {
             }
         ]
     }),
+
+    computed: {
+        filtrar() {
+            if (this.showFilters) {
+                if (this.windowWidth >= 768) {
+                    this.showFilters = false;
+                    return false;
+                } else {
+                    return true;
+                }
+            } else {
+                return false;
+            }
+        }
+    },
+
+    mounted() {
+        window.addEventListener("resize", () => {
+            this.windowWidth = window.innerWidth;
+        });
+    },
 
     components: {
         FiltrosMapa,

@@ -18,7 +18,11 @@
         </div>
         <div v-for="(panel, i) in panels" :key="i">
             <w-panel :header="panel.name" v-model="panel.value">
-                <w-btn v-for="(op, i) in panel.options" :key="i" @click="set(op)">{{ op }}</w-btn>
+                <w-btn
+                    v-for="(op, i) in panel.options"
+                    :key="i"
+                    @click="panel.selectOption = op"
+                >{{ op }}</w-btn>
             </w-panel>
         </div>
     </div>
@@ -33,30 +37,45 @@ export default {
                 {
                     value: false,
                     name: "operaciones",
-                    options: ["Venta", "Alquiler", "Traspaso"]
+                    options: ["Venta", "Alquiler", "Traspaso"],
+                    selectOption: null
                 },
                 {
                     value: false,
                     name: "publicaciones",
-                    options: ["Publicado", "Vendido", "Borrador"]
+                    options: ["Publicado", "Vendido", "Borrador"],
+                    selectOption: null
                 },
                 {
                     value: false,
                     name: "borradores",
-                    options: ["Opción 1", "Opción 2", "Opción 3"]
+                    options: ["Opción 1", "Opción 2", "Opción 3"],
+                    selectOption: null
                 }
-            ],
-
-            filtros: []
+            ]
         };
     },
+
+    computed: {
+        filtros() {
+            const filtrosArray = [];
+            for (let i = 0; i < this.panels.length; i++) {
+                if (this.panels[i].selectOption) {
+                    filtrosArray.push(this.panels[i].selectOption);
+                }
+            }
+            return filtrosArray;
+        }
+    },
+
     methods: {
-        set(op) {
-            this.filtros.push(op);
-        },
         unset(op) {
-            const i = this.filtros.indexOf(op);
-            this.filtros.splice(i, 1);
+            const find = this.panels.find(
+                element => element.selectOption == op
+            );
+
+            const index = this.panels.indexOf(find);
+            this.panels[index].selectOption = null;
         }
     }
 };

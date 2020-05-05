@@ -21,10 +21,9 @@
                             <div
                                 class="w-5/6 md:w-full flex flex-col-reverse md:flex-row justify-between"
                             >
-                                <div
-                                    class="w-full md:w-1/2 flex flex-row justify-between flex-wrap"
-                                >
-                                    <div class="w-1/2 md:w-1/3 self-center px-0 md:px-5">
+                                <div class="w-full md:w-1/2 flex flex-row flex-wrap">
+                                    <!-- BOTON -->
+                                    <div class="w-1/2 xl:w-1/3 self-center px-0 md:px-5">
                                         <w-btn
                                             :color="noti.state == 'guardar' ? 'secondary' : 'primary'"
                                             :dark="true"
@@ -34,15 +33,16 @@
                                             style="margin: 0px;"
                                         >{{ noti.state }}</w-btn>
                                     </div>
+                                    <!-- ESTRELLAS -->
                                     <div
-                                        class="w-1/2 md:w-1/3 flex flex-row justify-center px-1 md:px-5"
+                                        class="w-1/2 xl:w-1/3 md:hidden xl:flex flex-row justify-center px-1 md:px-5"
                                     >
                                         <w-btn
                                             :icon="true"
                                             v-for="i in 5"
                                             :key="i"
                                             :disabled="true"
-                                            style="margin: 2px;"
+                                            style="margin: 2px; background-color: transparent !important;"
                                         >
                                             <w-icon
                                                 :icon="noti.stars >= i ? 'star-brown' : 'star-grey'"
@@ -50,7 +50,8 @@
                                             ></w-icon>
                                         </w-btn>
                                     </div>
-                                    <div class="hidden md:block w-1/3 self-center">
+                                    <!-- IMAGEN Y NOMBRE -->
+                                    <div class="hidden md:block w-1/2 md:w-1/3 self-center">
                                         <div class="flex flex-row justify-center">
                                             <div class="w-1/2">
                                                 <div class="avatar">

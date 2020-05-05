@@ -108,7 +108,7 @@
             </w-card>
         </div>
         <br />
-        <div class="px-4">
+        <div class="agente-perfil-container">
             <w-card :shadow="false">
                 <p class="tertiary-text bold body ml-5 mb-5">Mis redes sociales</p>
                 <br />
@@ -148,7 +148,7 @@
             </w-card>
         </div>
         <br />
-        <div class="hidden lg:block md:block px-4">
+        <div class="hidden lg:block md:block agente-perfil-container">
             <w-card :shadow="false">
                 <div class="flex justify-around">
                     <div class="w-1/2 px-4">
@@ -216,13 +216,7 @@ export default {
 <style lang="scss" scoped>
 .agente-perfil-container {
     width: 90%;
+    max-width: 1180px;
     margin: auto;
-}
-
-@media (max-width: 768px) {
-    .agente-perfil-container {
-        width: 95%;
-        margin: auto;
-    }
 }
 </style>

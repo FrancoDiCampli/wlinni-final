@@ -18,7 +18,7 @@
                             :fullwidth="true"
                             color="secondary"
                             :dark="true"
-                            @click="filtrar = false"
+                            @click="showFilters = false"
                         >filtrar</w-btn>
                     </div>
                 </div>
@@ -64,8 +64,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-row justify-around">
-                    <div class="w-3/12 hidden lg:block pt-5 px-5">
+                <div class="flex flex-row justify-around md:ml-5">
+                    <div class="md:w-4/12 lg:w-3/12 hidden md:block pt-5">
                         <div>
                             <w-card :shadow="false">
                                 <template slot="header">
@@ -77,16 +77,16 @@
                         </div>
                     </div>
 
-                    <div class="sm:w-full lg:w-9/12">
+                    <div class="w-full md:w-8/12 lg:w-9/12 px-6">
                         <w-btn
-                            class="lg:hidden"
+                            class="md:hidden"
                             :dark="true"
                             color="secondary"
-                            @click="filtrar = true"
+                            @click="showFilters = true"
                         >filtrar</w-btn>
                         <div class="flex flex-row justify-between flex-wrap">
                             <div
-                                class="sm:w-full lg:w-1/3 pt-5 md:pr-5"
+                                class="sm:w-full md:w-2/4 lg:w-1/3 pt-5 md:pl-3"
                                 v-for="(card, i) in cards"
                                 :key="i"
                             >
@@ -113,7 +113,7 @@
                                     </div>
 
                                     <template slot="footer">
-                                        <div class="flex flex-row justify-between">
+                                        <div class="flex flex-row justify-between flex-wrap">
                                             <div class="flex flex-row justify-between">
                                                 <div class="info-item">
                                                     <w-icon icon="room-solid" h="12px"></w-icon>
@@ -174,10 +174,10 @@ export default {
     data() {
         return {
             checked: true,
+            showFilters: false,
             windowWidth: window.innerWidth,
             select: true,
             form: {},
-            filtrar: false,
             cards: [
                 {
                     tipo: "Alquiler",
@@ -344,8 +344,24 @@ export default {
             ]
         };
     },
+
     components: {
         FiltroInmueble
+    },
+
+    computed: {
+        filtrar() {
+            if (this.showFilters) {
+                if (this.windowWidth >= 768) {
+                    this.showFilters = false;
+                    return false;
+                } else {
+                    return true;
+                }
+            } else {
+                return false;
+            }
+        }
     },
 
     mounted() {
@@ -379,13 +395,17 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../../components/wlinii_components/sass/_variables.scss";
+
 .amc-2 {
     .amc-container {
-        width: 95%;
+        width: 90%;
+        max-width: 1180px;
         margin: auto;
         .step-btn {
             padding: 5px 25px;
             margin: 20px 18px;
+            background-color: $primary !important;
         }
 
         .amc-progress {
@@ -423,14 +443,6 @@ export default {
             .filter-body {
                 padding: 12px;
             }
-        }
-    }
-}
-
-@media (max-width: 768px) {
-    .amc-2 {
-        .amc-container {
-            width: 100%;
         }
     }
 }

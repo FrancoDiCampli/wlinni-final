@@ -2,7 +2,7 @@ import Vue from "vue";
 
 Vue.component("w-card", {
   data: () => ({
-    stateStyle: ""
+    stateStyle: "",
   }),
 
   props: {
@@ -10,21 +10,25 @@ Vue.component("w-card", {
     image: String,
     imageHeight: {
       type: String,
-      default: "225px"
+      default: "225px",
     },
     shadow: {
       type: Boolean,
-      default: true
+      default: true,
+    },
+    pointer: {
+      type: Boolean,
+      default: false,
     },
     hover: String,
     state: {
       type: String,
-      default: "rounded"
+      default: "rounded",
     },
     activeContent: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
 
   template: `
@@ -60,6 +64,7 @@ Vue.component("w-card", {
     setCardClass() {
       let cardClass = "card";
       this.shadow ? "" : (cardClass += " no-shadow");
+      this.pointer ? (cardClass += " pointer-card") : "";
       !this.value && this.hover ? (cardClass += ` ${this.hover}`) : "";
       this.value && this.activeContent ? (cardClass += " active-state") : "";
       return cardClass;
@@ -76,7 +81,7 @@ Vue.component("w-card", {
       return this.image
         ? `background-image: url(${this.image}); height: ${this.imageHeight};`
         : "";
-    }
+    },
   },
 
   mounted() {
@@ -91,6 +96,6 @@ Vue.component("w-card", {
           elementHeight / 2
         ).toFixed()}px;`;
       }
-    }
-  }
+    },
+  },
 });

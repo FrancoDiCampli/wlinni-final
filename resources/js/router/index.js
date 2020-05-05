@@ -141,5 +141,8 @@ export default new Router({
             name: "agente_perfil",
             component: PerfilDeAgente
         }
-    ]
+    ],
+    scrollBehavior(to, from) {
+        return { x: 0, y: 0 };
+    }
 });

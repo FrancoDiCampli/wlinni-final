@@ -16,7 +16,6 @@
                         :rounded="true"
                         :dark="true"
                         :small="true"
-                        color="primary"
                         class="step-btn"
                     >01 PASO</w-btn>
                     <p class="body subtitle-md bold ml-5">Completar Formulario</p>
@@ -63,6 +62,12 @@
                                     placeholder="Av- Juan Velasco, Sector 2 lote 1"
                                     v-model="form.direccion"
                                 ></w-input>
+                                <w-select
+                                    label="MONEDA"
+                                    :options="['Dolares americanos', 'Soles']"
+                                    placeholder="Dolares americanos"
+                                    v-model="form.moneda"
+                                ></w-select>
                                 <w-input
                                     label="PRECIO"
                                     placeholder="S/ 140.45"
@@ -98,178 +103,9 @@
                                     v-model="form.zonificacion"
                                 ></w-select>
                             </div>
-                            <div class="w-full md:w-1/2">
-                                <div class="w-full my-5">
-                                    <p class="bold ml-4">CALIDAD DE CONSTRUCCIÓN</p>
-                                    <div class="flex flex-row justify-center flex-wrap">
-                                        <div class="w-1/2 md:w-1/3 px-2">
-                                            <w-btn
-                                                :fullwidth="true"
-                                                :rounded="true"
-                                                :color="form.calidadConstruccion == 'EXCELENTE' ? 'tertiary' : '#aaaaaa'"
-                                                :dark="true"
-                                                @click="form.calidadConstruccion = 'EXCELENTE'"
-                                            >EXCELENTE</w-btn>
-                                        </div>
-                                        <div class="w-1/2 md:w-1/3 px-2">
-                                            <w-btn
-                                                :fullwidth="true"
-                                                :rounded="true"
-                                                :color="form.calidadConstruccion == 'BUENO' ? 'tertiary' : '#aaaaaa'"
-                                                :dark="true"
-                                                @click="form.calidadConstruccion = 'BUENO'"
-                                            >BUENO</w-btn>
-                                        </div>
-                                        <div class="w-1/2 md:w-1/3 px-2">
-                                            <w-btn
-                                                :fullwidth="true"
-                                                :rounded="true"
-                                                :color="form.calidadConstruccion == 'REGULAR' ? 'tertiary' : '#aaaaaa'"
-                                                :dark="true"
-                                                @click="form.calidadConstruccion = 'REGULAR'"
-                                            >REGULAR</w-btn>
-                                        </div>
-                                        <div class="w-1/2 md:w-1/3 px-2">
-                                            <w-btn
-                                                :fullwidth="true"
-                                                :rounded="true"
-                                                :color="form.calidadConstruccion == 'MALO' ? 'tertiary' : '#aaaaaa'"
-                                                :dark="true"
-                                                @click="form.calidadConstruccion = 'MALO'"
-                                            >MALO</w-btn>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="w-full my-5">
-                                    <p class="bold ml-4">CALIDAD DE ACABADOS</p>
-                                    <div class="flex flex-row justify-center flex-wrap">
-                                        <div class="w-1/2 md:w-1/3 px-2">
-                                            <w-btn
-                                                :fullwidth="true"
-                                                :rounded="true"
-                                                :color="form.calidadAcabados == 'EXCELENTE' ? 'tertiary' : '#aaaaaa'"
-                                                :dark="true"
-                                                @click="form.calidadAcabados = 'EXCELENTE'"
-                                            >EXCELENTE</w-btn>
-                                        </div>
-                                        <div class="w-1/2 md:w-1/3 px-2">
-                                            <w-btn
-                                                :fullwidth="true"
-                                                :rounded="true"
-                                                :color="form.calidadAcabados == 'BUENO' ? 'tertiary' : '#aaaaaa'"
-                                                :dark="true"
-                                                @click="form.calidadAcabados = 'BUENO'"
-                                            >BUENO</w-btn>
-                                        </div>
-                                        <div class="w-1/2 md:w-1/3 px-2">
-                                            <w-btn
-                                                :fullwidth="true"
-                                                :rounded="true"
-                                                :color="form.calidadAcabados == 'REGULAR' ? 'tertiary' : '#aaaaaa'"
-                                                :dark="true"
-                                                @click="form.calidadAcabados = 'REGULAR'"
-                                            >REGULAR</w-btn>
-                                        </div>
-                                        <div class="w-1/2 md:w-1/3 px-2">
-                                            <w-btn
-                                                :fullwidth="true"
-                                                :rounded="true"
-                                                :color="form.calidadAcabados == 'MALO' ? 'tertiary' : '#aaaaaa'"
-                                                :dark="true"
-                                                @click="form.calidadAcabados = 'MALO'"
-                                            >MALO</w-btn>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="w-full my-5">
-                                    <p class="bold ml-4">CALIDAD DE CONSERVACIÓN</p>
-                                    <div class="flex flex-row justify-center flex-wrap">
-                                        <div class="w-1/2 md:w-1/3 px-2">
-                                            <w-btn
-                                                :fullwidth="true"
-                                                :rounded="true"
-                                                :color="form.calidadConservacion == 'EXCELENTE' ? 'tertiary' : '#aaaaaa'"
-                                                :dark="true"
-                                                @click="form.calidadConservacion = 'EXCELENTE'"
-                                            >EXCELENTE</w-btn>
-                                        </div>
-                                        <div class="w-1/2 md:w-1/3 px-2">
-                                            <w-btn
-                                                :fullwidth="true"
-                                                :rounded="true"
-                                                :color="form.calidadConservacion == 'BUENO' ? 'tertiary' : '#aaaaaa'"
-                                                :dark="true"
-                                                @click="form.calidadConservacion = 'BUENO'"
-                                            >BUENO</w-btn>
-                                        </div>
-                                        <div class="w-1/2 md:w-1/3 px-2">
-                                            <w-btn
-                                                :fullwidth="true"
-                                                :rounded="true"
-                                                :color="form.calidadConservacion == 'REGULAR' ? 'tertiary' : '#aaaaaa'"
-                                                :dark="true"
-                                                @click="form.calidadConservacion = 'REGULAR'"
-                                            >REGULAR</w-btn>
-                                        </div>
-                                        <div class="w-1/2 md:w-1/3 px-2">
-                                            <w-btn
-                                                :fullwidth="true"
-                                                :rounded="true"
-                                                :color="form.calidadConservacion == 'MALO' ? 'tertiary' : '#aaaaaa'"
-                                                :dark="true"
-                                                @click="form.calidadConservacion = 'MALO'"
-                                            >MALO</w-btn>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="w-full my-5">
-                                    <p class="bold ml-4">UBICACIÓN</p>
-                                    <div class="flex flex-row justify-center flex-wrap">
-                                        <div class="w-1/2 md:w-1/3 px-2">
-                                            <w-btn
-                                                :fullwidth="true"
-                                                :rounded="true"
-                                                :color="form.ubicacion == 'EXCELENTE' ? 'tertiary' : '#aaaaaa'"
-                                                :dark="true"
-                                                @click="form.ubicacion = 'EXCELENTE'"
-                                            >EXCELENTE</w-btn>
-                                        </div>
-                                        <div class="w-1/2 md:w-1/3 px-2">
-                                            <w-btn
-                                                :fullwidth="true"
-                                                :rounded="true"
-                                                :color="form.ubicacion == 'BUENO' ? 'tertiary' : '#aaaaaa'"
-                                                :dark="true"
-                                                @click="form.ubicacion = 'BUENO'"
-                                            >BUENO</w-btn>
-                                        </div>
-                                        <div class="w-1/2 md:w-1/3 px-2">
-                                            <w-btn
-                                                :fullwidth="true"
-                                                :rounded="true"
-                                                :color="form.ubicacion == 'REGULAR' ? 'tertiary' : '#aaaaaa'"
-                                                :dark="true"
-                                                @click="form.ubicacion = 'REGULAR'"
-                                            >REGULAR</w-btn>
-                                        </div>
-                                        <div class="w-1/2 md:w-1/3 px-2">
-                                            <w-btn
-                                                :fullwidth="true"
-                                                :rounded="true"
-                                                :color="form.ubicacion == 'MALO' ? 'tertiary' : '#aaaaaa'"
-                                                :dark="true"
-                                                @click="form.ubicacion = 'MALO'"
-                                            >MALO</w-btn>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <div class="flex flex-row justify-center">
-                            <div class="w-full md:w-1/2">
+                            <div class="w-full md:w-2/3 lg:w-1/2">
                                 <div class="flex flex-row justify-between flex-wrap">
                                     <div class="w-full md:w-1/2 px-2">
                                         <w-btn
@@ -317,13 +153,17 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../../components/wlinii_components/sass/_variables.scss";
+
 .amc-1 {
     .amc-container {
-        width: 95%;
+        width: 90%;
+        max-width: 1180px;
         margin: auto;
         .step-btn {
             padding: 5px 25px;
             margin: 20px 18px;
+            background-color: $primary !important;
         }
 
         .amc-progress {
@@ -339,14 +179,6 @@ export default {
                     border-radius: 15px;
                 }
             }
-        }
-    }
-}
-
-@media (max-width: 768px) {
-    .amc-1 {
-        .amc-container {
-            width: 100%;
         }
     }
 }

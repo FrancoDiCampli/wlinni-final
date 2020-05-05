@@ -8,7 +8,7 @@
                         :small="true"
                         :disabled="true"
                         :dark="true"
-                        class="self-start md:self-center m-btn"
+                        class="self-start md:self-center m-btn secondary-fix-color"
                     >Comisión {{ property.comision }}</w-btn>
                 </div>
                 <p class="ml-5">{{ property.dir }}</p>
@@ -143,8 +143,8 @@
                 </div>
                 <div>
                     <w-carousel
-                        :items="windowWidth <= 768 ? 1 : 5"
-                        :pagination="windowWidth <= 768"
+                        :items="carrouselItems"
+                        :pagination="windowWidth <= 1024"
                         :navigation="false"
                         class="feature-carousel my-5"
                     >
@@ -243,7 +243,11 @@
             </w-card>
             <w-card class="my-10">
                 <p class="body bold my-10">Ubicación en mapa</p>
-                <mapas :center="property.mapLocation.position" :markers="[property.mapLocation]"></mapas>
+                <mapas
+                    :center="property.mapLocation.position"
+                    :markers="[property.mapLocation]"
+                    :showInfo="false"
+                ></mapas>
             </w-card>
             <w-card class="my-10">
                 <div class="perfil-agente-container">
@@ -343,6 +347,20 @@ export default {
         Perfil
     },
 
+    computed: {
+        carrouselItems() {
+            if (this.windowWidth >= 640) {
+                if (this.windowWidth >= 768) {
+                    return this.windowWidth >= 1024 ? 5 : 3;
+                } else {
+                    return 2;
+                }
+            } else {
+                return 1;
+            }
+        }
+    },
+
     mounted() {
         window.addEventListener("resize", () => {
             this.windowWidth = window.innerWidth;
@@ -374,6 +392,10 @@ export default {
             &:not(.full-width) {
                 margin: 6px 18px;
             }
+        }
+
+        .secondary-fix-color {
+            background-color: $secondary !important;
         }
 
         .media-player {

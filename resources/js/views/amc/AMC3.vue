@@ -59,7 +59,7 @@
                         </tr>
                     </table>
                 </div>
-                <div class="amc-table-container mt-5 hidden md:block">
+                <div class="amc-table-container mt-5 hidden lg:block">
                     <table class="amc-table">
                         <tr>
                             <th></th>
@@ -84,7 +84,7 @@
                         </tr>
                     </table>
                 </div>
-                <div class="amc-table-container mt-5 block md:hidden">
+                <div class="amc-table-container mt-5 block lg:hidden">
                     <table class="amc-table">
                         <tr>
                             <th></th>
@@ -100,7 +100,7 @@
                         </tr>
                     </table>
                 </div>
-                <div class="amc-table-container mt-5 block md:hidden">
+                <div class="amc-table-container mt-5 block lg:hidden">
                     <table class="amc-table">
                         <tr>
                             <th>Promedio</th>
@@ -142,7 +142,7 @@
                     </form>
                 </div>
                 <div class="flex flex-row justify-center">
-                    <div class="w-full md:w-1/2">
+                    <div class="w-full md:w-2/3 lg:w-1/2">
                         <div class="flex flex-row justify-between flex-wrap">
                             <div class="w-full md:w-1/2 px-2">
                                 <w-btn
@@ -178,14 +178,18 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../../components/wlinii_components/sass/_variables.scss";
+
 .amc-4 {
     .amc-container {
-        max-width: 90%;
+        width: 90%;
+        max-width: 1180px;
         margin: auto;
 
         .step-btn {
             padding: 5px 25px;
             margin: 20px 18px;
+            background-color: $primary !important;
         }
 
         .amc-progress {
@@ -213,7 +217,7 @@ export default {
                     th,
                     td {
                         text-align: left;
-                        padding: 32px 64px;
+                        padding: 32px 48px;
                     }
                     th {
                         background-color: rgba($color: #aaaaaa, $alpha: 0.18);
@@ -236,10 +240,9 @@ export default {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .amc-4 {
         .amc-container {
-            width: 95%;
             .step-btn {
                 padding: 5px 25px;
                 margin: 20px 0px !important;

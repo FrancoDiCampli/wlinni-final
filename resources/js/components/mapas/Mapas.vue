@@ -48,7 +48,11 @@
 export default {
     props: {
         markers: Array,
-        center: Object
+        center: Object,
+        showInfo: {
+            type: Boolean,
+            default: true
+        }
     },
 
     data: () => ({
@@ -79,9 +83,11 @@ export default {
 
     methods: {
         toggleInfoWindow(marker, idx) {
-            this.infoWindowPos = marker.position;
-            this.card = marker;
-            this.infoWinOpen = !this.infoWinOpen;
+            if (this.showInfo) {
+                this.infoWindowPos = marker.position;
+                this.card = marker;
+                this.infoWinOpen = !this.infoWinOpen;
+            }
         },
 
         closeInfoWindow() {
