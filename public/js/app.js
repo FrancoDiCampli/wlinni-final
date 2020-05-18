@@ -4368,7 +4368,7 @@ __webpack_require__.r(__webpack_exports__);
       },
       currentPlace: null,
       markerOptions: {
-        url: "/images/address-red.png",
+        url: "/images/pin.png",
         size: {
           width: 22.5,
           height: 31.5,
@@ -4426,6 +4426,7 @@ __webpack_require__.r(__webpack_exports__);
       };
       this.center = marker;
       this.currentPlace = null;
+      console.log(this.marker);
     },
     geolocate: function geolocate() {
       var _this = this;
@@ -64842,13 +64843,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
 __webpack_require__(/*! C:\xampp\htdocs\final\wlinii-laravel\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! C:\xampp\htdocs\final\wlinii-laravel\resources\css\main.css */"./resources/css/main.css");
-=======
-__webpack_require__(/*! C:\xampp\htdocs\wlinii-laravel\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\wlinii-laravel\resources\css\main.css */"./resources/css/main.css");
->>>>>>> 73e479088b2ccfaadf42e15494a64ff6a54c4628
 
 
 /***/ })
