@@ -4045,55 +4045,65 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "FiltroPublicacion",
+  props: ["panels"],
   data: function data() {
-    return {
-      panels: [{
-        value: false,
-        name: "Tipo de Inmueble",
-        options: ["Departamento", "Casa", "Oficina"],
-        selectOption: null
-      }, {
-        value: false,
-        name: "Distrito / Ubicación",
-        options: ["San Isidro", "Miraflores", "Santiago de Surco", "La Molina"],
-        selectOption: null
-      }, {
-        value: false,
-        name: "Precio",
-        options: ["S/ 2500", "S/ 1500", "S/ 3550", "S/ 5400"],
-        selectOption: null
-      }, {
-        value: false,
-        name: "Dormitorios",
-        options: ["Dormitorios 1", "Dormitorios 2", "Dormitorios 3"],
-        selectOption: null
-      }, {
-        value: false,
-        name: "Area Total (m2)",
-        options: ["Area 1", "Area 2", "Area 3"],
-        selectOption: null
-      }, {
-        value: false,
-        name: "Cocheras",
-        options: ["Cocheras 1", "Cocheras 2", "Cocheras 3"],
-        selectOption: null
-      }, {
-        value: false,
-        name: "Antigüedad",
-        options: ["Antigüedad 1", "Antigüedad 2", "Antigüedad 3"],
-        selectOption: null
-      }, {
-        value: false,
-        name: "Estado",
-        options: ["Estado 1", "Estado 2", "Estado 3"],
-        selectOption: null
-      }]
+    return {//   panels: [
+      //     {
+      //       value: false,
+      //       name: "Tipo de Inmueble",
+      //       options: ["Departamento", "Casa", "Oficina"],
+      //       selectOption: null
+      //     },
+      //     {
+      //       value: false,
+      //       name: "Distrito / Ubicación",
+      //       options: [
+      //         "San Isidro",
+      //         "Miraflores",
+      //         "Santiago de Surco",
+      //         "La Molina"
+      //       ],
+      //       selectOption: null
+      //     },
+      //     {
+      //       value: false,
+      //       name: "Precio",
+      //       options: ["S/ 2500", "S/ 1500", "S/ 3550", "S/ 5400"],
+      //       selectOption: null
+      //     },
+      //     {
+      //       value: false,
+      //       name: "Dormitorios",
+      //       options: ["Dormitorios 1", "Dormitorios 2", "Dormitorios 3"],
+      //       selectOption: null
+      //     },
+      //     {
+      //       value: false,
+      //       name: "Area Total (m2)",
+      //       options: ["Area 1", "Area 2", "Area 3"],
+      //       selectOption: null
+      //     },
+      //     {
+      //       value: false,
+      //       name: "Cocheras",
+      //       options: ["Cocheras 1", "Cocheras 2", "Cocheras 3"],
+      //       selectOption: null
+      //     },
+      //     {
+      //       value: false,
+      //       name: "Antigüedad",
+      //       options: ["Antigüedad 1", "Antigüedad 2", "Antigüedad 3"],
+      //       selectOption: null
+      //     },
+      //     {
+      //       value: false,
+      //       name: "Estado",
+      //       options: ["Estado 1", "Estado 2", "Estado 3"],
+      //       selectOption: null
+      //     }
+      //   ]
     };
   },
   computed: {
@@ -4329,6 +4339,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -4356,7 +4368,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {
+    var _ref;
+
+    return _ref = {
       center: {
         lat: -12.1122095,
         lng: -77.047945
@@ -4394,15 +4408,12 @@ __webpack_require__.r(__webpack_exports__);
         }
       },
       card: {}
-    };
-  },
-  mounted: function mounted() {
-    this.geolocate();
-    this.$refs.mapRef.$mapPromise.then(function (map) {
-      var myControl = document.getElementById("myAutocomplete");
-      myControl.index = 1;
-      map.controls[google.maps.ControlPosition.TOP_CENTER].push(myControl);
-    });
+    }, _defineProperty(_ref, "infoOptions", {
+      pixelOffset: {
+        width: 0,
+        height: -35
+      }
+    }), _defineProperty(_ref, "card", {}), _defineProperty(_ref, "dir", ""), _ref;
   },
   methods: {
     setPlace: function setPlace(place) {
@@ -4416,6 +4427,14 @@ __webpack_require__.r(__webpack_exports__);
         };
       }
     },
+    // addMaker(e) {
+    //   const marker = {
+    //     lat: e.latLng.lat(),
+    //     lng: e.latLng.lng()
+    //   };
+    //   this.marker = { position: marker };
+    //   this.center = marker;
+    //   this.currentPlace = null;
     addMaker: function addMaker(e) {
       var marker = {
         lat: e.latLng.lat(),
@@ -4426,13 +4445,29 @@ __webpack_require__.r(__webpack_exports__);
       };
       this.center = marker;
       this.currentPlace = null;
-      console.log(this.marker);
+      this.searchAddress(e);
     },
-    geolocate: function geolocate() {
+    searchAddress: function searchAddress(e) {
       var _this = this;
 
+      var geocoder = new google.maps.Geocoder();
+      geocoder.geocode({
+        location: {
+          lat: e.latLng.lat(),
+          lng: e.latLng.lng()
+        }
+      }, function (results) {
+        return _this.$emit("eventAddress", {
+          coordenadas: _this.marker,
+          direccion: results[0].formatted_address
+        });
+      });
+    },
+    geolocate: function geolocate() {
+      var _this2 = this;
+
       navigator.geolocation.getCurrentPosition(function (position) {
-        _this.center = {
+        _this2.center = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
@@ -6570,16 +6605,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -7737,14 +7762,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -7887,6 +7904,47 @@ __webpack_require__.r(__webpack_exports__);
           estacionamiento: 2,
           tamaño: "120m"
         }
+      }],
+      panels: [{
+        value: false,
+        name: "Tipo de Inmueble",
+        options: ["Departamento", "Casa", "Oficina"],
+        selectOption: null
+      }, {
+        value: false,
+        name: "Distrito / Ubicación",
+        options: ["San Isidro", "Miraflores", "Santiago de Surco", "La Molina"],
+        selectOption: null
+      }, {
+        value: false,
+        name: "Precio",
+        options: ["S/ 2500", "S/ 1500", "S/ 3550", "S/ 5400"],
+        selectOption: null
+      }, {
+        value: false,
+        name: "Dormitorios",
+        options: ["Dormitorios 1", "Dormitorios 2", "Dormitorios 3"],
+        selectOption: null
+      }, {
+        value: false,
+        name: "Area Total (m2)",
+        options: ["Area 1", "Area 2", "Area 3"],
+        selectOption: null
+      }, {
+        value: false,
+        name: "Cocheras",
+        options: ["Cocheras 1", "Cocheras 2", "Cocheras 3"],
+        selectOption: null
+      }, {
+        value: false,
+        name: "Antigüedad",
+        options: ["Antigüedad 1", "Antigüedad 2", "Antigüedad 3"],
+        selectOption: null
+      }, {
+        value: false,
+        name: "Estado",
+        options: ["Estado 1", "Estado 2", "Estado 3"],
+        selectOption: null
       }]
     };
   },
@@ -9285,109 +9343,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -9407,7 +9362,10 @@ __webpack_require__.r(__webpack_exports__);
         photos: [],
         videos: []
       },
-      test: false
+      selectVideo: false,
+      test: false,
+      coordenadas: null,
+      verDireccion: ""
     };
   },
   components: {
@@ -9434,6 +9392,10 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
+    eventDireccion: function eventDireccion(params) {
+      this.verDireccion = params.direccion;
+      this.coordenadas = params.coordenadas.position;
+    },
     addPhoto: function addPhoto() {
       if (this.form.photos.length < 20) {
         var files = this.$refs["photoFile"].files;
@@ -10061,7 +10023,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".login .login-container {\n  padding: 75px 150px;\n}\n.login .login-container .login-card {\n  display: flex !important;\n  flex-direction: row-reverse;\n  justify-content: space-between;\n  align-items: center;\n  flex-wrap: nowrap;\n  max-width: 982px;\n}\n.login .login-container .login-card .image,\n.login .login-container .login-card .card-text {\n  max-width: 50%;\n  height: 490px !important;\n  flex: 1 1 auto;\n}\n.login .login-container .login-card .card-text {\n  padding: 65px;\n}\n.login .login-link {\n  color: #000;\n  text-decoration: underline;\n  cursor: pointer;\n}\n@media (max-width: 1024px) {\n.login .login-container .login-card {\n    justify-content: center;\n}\n.login .login-container .login-card .image {\n    display: none;\n}\n.login .login-container .login-card .card-text {\n    max-width: 100% !important;\n    flex: 0 1 auto;\n    padding: 25px;\n}\n}\n@media (max-width: 768px) {\n.login .login-container {\n    padding: 15px;\n}\n}", ""]);
+exports.push([module.i, ".login {\n  margin: auto;\n}\n.login .login-container .login-card {\n  display: flex !important;\n  flex-direction: row-reverse;\n  justify-content: space-between;\n  align-items: center;\n  flex-wrap: nowrap;\n  max-width: 982px;\n}\n.login .login-container .login-card .image,\n.login .login-container .login-card .card-text {\n  max-width: 50%;\n  height: 490px !important;\n  flex: 1 1 auto;\n}\n.login .login-container .login-card .card-text {\n  padding: 65px;\n}\n.login .login-link {\n  color: #000;\n  text-decoration: underline;\n  cursor: pointer;\n}\n@media (min-width: 1024px) {\n.login {\n    margin: auto;\n}\n}\n@media (max-width: 1024px) {\n.login .login-container .login-card {\n    justify-content: right;\n}\n.login .login-container .login-card .image {\n    display: none;\n}\n.login .login-container .login-card .card-text {\n    max-width: 100% !important;\n    flex: 0 1 auto;\n    padding: 25px;\n}\n}\n@media (max-width: 768px) {\n.login .login-container {\n    padding: 15px;\n}\n}", ""]);
 
 // exports
 
@@ -35292,9 +35254,7 @@ var render = function() {
             ),
             _vm._v(" "),
             _c("p", { staticClass: "ml-4" }, [
-              _vm._v(
-                "\n                ¿Aun no eres usuario?\n                "
-              ),
+              _vm._v("\n        ¿Aun no eres usuario?\n        "),
               _c("a", { staticClass: "login-link" }, [
                 _vm._v("Obtener una cuenta")
               ])
@@ -37168,7 +37128,7 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _c("FiltroInmueble")
+                  _c("FiltroInmueble", { attrs: { panels: _vm.panels } })
                 ],
                 2
               )
@@ -37188,7 +37148,7 @@ var render = function() {
                   "div",
                   { staticClass: "filter-body" },
                   [
-                    _c("FiltroInmueble"),
+                    _c("FiltroInmueble", { attrs: { panels: _vm.panels } }),
                     _vm._v(" "),
                     _c(
                       "w-btn",
@@ -37252,7 +37212,7 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\n                                Búsqueda de mapa\n                                "
+                                  "\n                Búsqueda de mapa\n                "
                                 ),
                                 _c("w-icon", {
                                   staticStyle: { margin: "-6px 0px 0px 16px" },
@@ -37383,11 +37343,11 @@ var render = function() {
                                                 { staticClass: "white-text" },
                                                 [
                                                   _vm._v(
-                                                    "\n                                                    " +
+                                                    "\n                          " +
                                                       _vm._s(
                                                         card.info.habitaciones
                                                       ) +
-                                                      "\n                                                "
+                                                      "\n                        "
                                                   )
                                                 ]
                                               )
@@ -37435,12 +37395,12 @@ var render = function() {
                                                 { staticClass: "white-text" },
                                                 [
                                                   _vm._v(
-                                                    "\n                                                    " +
+                                                    "\n                          " +
                                                       _vm._s(
                                                         card.info
                                                           .estacionamiento
                                                       ) +
-                                                      "\n                                                "
+                                                      "\n                        "
                                                   )
                                                 ]
                                               )
@@ -40562,22 +40522,31 @@ var render = function() {
                         [_vm._v("Locación")]
                       ),
                       _vm._v(" "),
-                      _c("p", { staticClass: "ml-5 mb-4" }, [
-                        _vm._v(
-                          "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis."
-                        )
-                      ]),
+                      _c("w-input", {
+                        attrs: { disabled: "" },
+                        model: {
+                          value: _vm.verDireccion,
+                          callback: function($$v) {
+                            _vm.verDireccion = $$v
+                          },
+                          expression: "verDireccion"
+                        }
+                      }),
                       _vm._v(" "),
-                      _c("mapas-agregar")
+                      _c("mapas-agregar", {
+                        on: {
+                          eventAddress: function($event) {
+                            return _vm.eventDireccion($event)
+                          }
+                        }
+                      })
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "mt-20" }, [
                     _c("div", { staticClass: "f-header" }, [
-                      _vm._v(
-                        "\n                            Fotos\n                            "
-                      ),
+                      _vm._v("\n              Fotos\n              "),
                       _c("span", { staticClass: "caption black-text" }, [
                         _vm._v(
                           "(" +
@@ -40651,7 +40620,7 @@ var render = function() {
                                   _vm._v(" "),
                                   _c("p", { staticClass: "text-center mt-5" }, [
                                     _vm._v(
-                                      "\n                                            Formatos permitidos: JPG, JPEG, PNG\n                                            (Tamaño máximo: 5Mb)\n                                        "
+                                      "\n                      Formatos permitidos: JPG, JPEG, PNG\n                      (Tamaño máximo: 5Mb)\n                    "
                                     )
                                   ])
                                 ],
@@ -40737,9 +40706,7 @@ var render = function() {
                     _c("br"),
                     _vm._v(" "),
                     _c("div", { staticClass: "f-header" }, [
-                      _vm._v(
-                        "\n                            Videos\n                            "
-                      ),
+                      _vm._v("\n              Videos\n              "),
                       _c("span", { staticClass: "caption black-text" }, [
                         _vm._v(
                           "(" +
@@ -40769,10 +40736,6 @@ var render = function() {
                                     attrs: { icon: "upload-video", h: "137px" }
                                   }),
                                   _vm._v(" "),
-                                  _c("p", { staticClass: "text-center mt-5" }, [
-                                    _vm._v("Sube videos desde tu computadora")
-                                  ]),
-                                  _vm._v(" "),
                                   _c(
                                     "w-btn",
                                     {
@@ -40780,129 +40743,113 @@ var render = function() {
                                         color: "#57BCD1",
                                         dark: true,
                                         rounded: true,
-                                        small: true,
-                                        disabled:
-                                          _vm.form.videos.length >= 3
-                                            ? true
-                                            : false
+                                        small: true
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.selectVideo = !_vm.selectVideo
+                                        }
                                       }
                                     },
-                                    [
-                                      _c("p", [_vm._v("seleccionar videos")]),
-                                      _vm._v(" "),
-                                      _c("input", {
-                                        ref: "videoFile",
-                                        staticClass: "fileInput",
-                                        attrs: {
-                                          type: "file",
-                                          accept: ".mp4, .avi",
-                                          disabled:
-                                            _vm.form.videos.length >= 3
-                                              ? true
-                                              : false,
-                                          multiple: "multiple"
-                                        },
-                                        on: {
-                                          change: function($event) {
-                                            return _vm.addVideo()
-                                          }
-                                        }
-                                      })
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("p", { staticClass: "text-center mt-5" }, [
-                                    _vm._v(
-                                      "\n                                            Formatos permitidos: JPG, JPEG, PNG\n                                            (Tamaño máximo: 5Mb)\n                                        "
-                                    )
-                                  ])
+                                    [_c("p", [_vm._v("seleccionar videos")])]
+                                  )
                                 ],
                                 1
                               ),
                               _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "preview" },
-                                [
-                                  _c(
-                                    "w-carousel",
-                                    {
-                                      staticClass: "preview-carousel",
-                                      attrs: {
-                                        items: _vm.carrouselItems,
-                                        pagination:
-                                          _vm.windowWidth >= 1024
-                                            ? false
-                                            : true,
-                                        navigation:
-                                          _vm.windowWidth >= 1024 ? true : false
-                                      }
-                                    },
-                                    _vm._l(_vm.form.videos, function(media, i) {
-                                      return _c(
-                                        "slide",
-                                        {
-                                          key: i,
-                                          staticClass: "preview-slide"
-                                        },
-                                        [
-                                          _c(
-                                            "div",
-                                            { staticClass: "preview-item" },
-                                            [
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass: "preview-source"
-                                                },
-                                                [
-                                                  _c(
-                                                    "video",
-                                                    {
-                                                      attrs: {
-                                                        autoplay: "",
-                                                        muted: ""
-                                                      },
-                                                      domProps: { muted: true }
-                                                    },
-                                                    [
-                                                      _c("source", {
-                                                        attrs: {
-                                                          src: media.url
-                                                        }
-                                                      })
-                                                    ]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass:
-                                                        "delete-icon",
-                                                      on: {
-                                                        click: function(
-                                                          $event
-                                                        ) {
-                                                          return _vm.removeVideo(
-                                                            media
-                                                          )
-                                                        }
-                                                      }
-                                                    },
-                                                    [_vm._v("×")]
+                              _vm.selectVideo
+                                ? _c("div", [
+                                    _c("p", { staticClass: "f-header" }, [
+                                      _vm._v("Enlace de video")
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass: "flex flex-row flex-wrap"
+                                      },
+                                      [
+                                        _c(
+                                          "div",
+                                          { staticClass: "w-full px-2" },
+                                          [
+                                            _c("w-input", {
+                                              attrs: {
+                                                label: "Enlace de video",
+                                                placeholder:
+                                                  "Ejemplo: https://www.youtube.com/watch?v=uN5Cux5t0Ak"
+                                              },
+                                              model: {
+                                                value: _vm.form.link1,
+                                                callback: function($$v) {
+                                                  _vm.$set(
+                                                    _vm.form,
+                                                    "link1",
+                                                    $$v
                                                   )
-                                                ]
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    }),
-                                    1
-                                  )
-                                ],
-                                1
-                              )
+                                                },
+                                                expression: "form.link1"
+                                              }
+                                            })
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          { staticClass: "w-full px-2" },
+                                          [
+                                            _c("w-input", {
+                                              attrs: {
+                                                label: "Enlace de video",
+                                                placeholder:
+                                                  "Ejemplo: https://www.youtube.com/watch?v=uN5Cux5t0Ak"
+                                              },
+                                              model: {
+                                                value: _vm.form.link2,
+                                                callback: function($$v) {
+                                                  _vm.$set(
+                                                    _vm.form,
+                                                    "link2",
+                                                    $$v
+                                                  )
+                                                },
+                                                expression: "form.link2"
+                                              }
+                                            })
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          { staticClass: "w-full px-2" },
+                                          [
+                                            _c("w-input", {
+                                              attrs: {
+                                                label: "Enlace de video",
+                                                placeholder:
+                                                  "Ejemplo: https://www.youtube.com/watch?v=uN5Cux5t0Ak"
+                                              },
+                                              model: {
+                                                value: _vm.form.link3,
+                                                callback: function($$v) {
+                                                  _vm.$set(
+                                                    _vm.form,
+                                                    "link3",
+                                                    $$v
+                                                  )
+                                                },
+                                                expression: "form.link3"
+                                              }
+                                            })
+                                          ],
+                                          1
+                                        )
+                                      ]
+                                    )
+                                  ])
+                                : _vm._e()
                             ]
                           )
                         ],
@@ -40917,7 +40864,7 @@ var render = function() {
                         [
                           _c("p", { staticClass: "text-center" }, [
                             _vm._v(
-                              "\n                                    Si ha completadp todos los campos y está\n                                    seguro de la exactitud de toda la\n                                    información, haga clic en el botón a\n                                    continuación para guardar los datos\n                                "
+                              "\n                  Si ha completadp todos los campos y está\n                  seguro de la exactitud de toda la\n                  información, haga clic en el botón a\n                  continuación para guardar los datos\n                "
                             )
                           ])
                         ]

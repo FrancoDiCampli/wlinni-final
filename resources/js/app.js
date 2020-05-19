@@ -10,8 +10,8 @@ const VueGoogleMaps = require("vue2-google-maps");
 Vue.use(VueGoogleMaps, {
     load: {
         key: "",
-        libraries: "places",
-    },
+        libraries: "places"
+    }
 });
 
 Vue.config.productionTip = false;
@@ -21,5 +21,5 @@ new Vue({
     store,
     render: function (h) {
         return h(App);
-    },
+    }
 }).$mount("#app");

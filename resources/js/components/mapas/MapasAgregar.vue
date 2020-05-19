@@ -51,17 +51,17 @@ export default {
         height: -35
       }
     },
-    card: {}
-  }),
+    card: {},
 
-  mounted() {
-    this.geolocate();
-    this.$refs.mapRef.$mapPromise.then(map => {
-      var myControl = document.getElementById("myAutocomplete");
-      myControl.index = 1;
-      map.controls[google.maps.ControlPosition.TOP_CENTER].push(myControl);
-    });
-  },
+    infoOptions: {
+      pixelOffset: {
+        width: 0,
+        height: -35
+      }
+    },
+    card: {},
+    dir: ""
+  }),
 
   methods: {
     setPlace(place) {
@@ -77,8 +77,17 @@ export default {
       }
     },
 
+    // addMaker(e) {
+    //   const marker = {
+    //     lat: e.latLng.lat(),
+    //     lng: e.latLng.lng()
+    //   };
+    //   this.marker = { position: marker };
+    //   this.center = marker;
+    //   this.currentPlace = null;
+
     addMaker(e) {
-      const marker = {
+      let marker = {
         lat: e.latLng.lat(),
         lng: e.latLng.lng()
       };
@@ -86,7 +95,24 @@ export default {
       this.center = marker;
       this.currentPlace = null;
 
-      console.log(this.marker);
+      this.searchAddress(e);
+    },
+
+    searchAddress(e) {
+      let geocoder = new google.maps.Geocoder();
+      geocoder.geocode(
+        {
+          location: {
+            lat: e.latLng.lat(),
+            lng: e.latLng.lng()
+          }
+        },
+        results =>
+          this.$emit("eventAddress", {
+            coordenadas: this.marker,
+            direccion: results[0].formatted_address
+          })
+      );
     },
 
     geolocate() {
