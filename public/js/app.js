@@ -4046,65 +4046,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "FiltroPublicacion",
+  name: "FiltroInmueble",
   props: ["panels"],
   data: function data() {
-    return {//   panels: [
-      //     {
-      //       value: false,
-      //       name: "Tipo de Inmueble",
-      //       options: ["Departamento", "Casa", "Oficina"],
-      //       selectOption: null
-      //     },
-      //     {
-      //       value: false,
-      //       name: "Distrito / Ubicación",
-      //       options: [
-      //         "San Isidro",
-      //         "Miraflores",
-      //         "Santiago de Surco",
-      //         "La Molina"
-      //       ],
-      //       selectOption: null
-      //     },
-      //     {
-      //       value: false,
-      //       name: "Precio",
-      //       options: ["S/ 2500", "S/ 1500", "S/ 3550", "S/ 5400"],
-      //       selectOption: null
-      //     },
-      //     {
-      //       value: false,
-      //       name: "Dormitorios",
-      //       options: ["Dormitorios 1", "Dormitorios 2", "Dormitorios 3"],
-      //       selectOption: null
-      //     },
-      //     {
-      //       value: false,
-      //       name: "Area Total (m2)",
-      //       options: ["Area 1", "Area 2", "Area 3"],
-      //       selectOption: null
-      //     },
-      //     {
-      //       value: false,
-      //       name: "Cocheras",
-      //       options: ["Cocheras 1", "Cocheras 2", "Cocheras 3"],
-      //       selectOption: null
-      //     },
-      //     {
-      //       value: false,
-      //       name: "Antigüedad",
-      //       options: ["Antigüedad 1", "Antigüedad 2", "Antigüedad 3"],
-      //       selectOption: null
-      //     },
-      //     {
-      //       value: false,
-      //       name: "Estado",
-      //       options: ["Estado 1", "Estado 2", "Estado 3"],
-      //       selectOption: null
-      //     }
-      //   ]
-    };
+    return {};
   },
   computed: {
     filtros: function filtros() {
@@ -4163,52 +4108,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "FiltroInmueble",
+  name: "FiltrosMapa",
+  props: ["panels"],
   data: function data() {
-    return {
-      filtros: [],
-      panels: [{
-        value: false,
-        name: "Tipo de Inmueble",
-        options: ["Departamento (600)", "Casa (250)", "Oficinas (800)", "Locales Comerciales (300)", "Terrenos (150)"]
-      }, {
-        value: false,
-        name: "Distrito / Ubicación",
-        options: ["Lima (600)", "Callao (250)", "Trujillo (800)", "Piura (300)", "Arequipa (150)"]
-      }, {
-        value: false,
-        name: "Precio",
-        options: ["S/ 2500", "S/ 1500", "S/ 3550", "S/ 5400"]
-      }, {
-        value: false,
-        name: "Dormitorios",
-        options: ["1 Dormitorio (600)", "2 Dormitorio (250)", "3 Dormitorio (800)", "4 Dormitorio (300)", "5 Dormitorio (150)"]
-      }, {
-        value: false,
-        name: "Area Toral (m2)",
-        options: ["120m"]
-      }, {
-        value: false,
-        name: "Cocheras",
-        options: ["Opción 1", "Opción 2", "Opción 3"]
-      }, {
-        value: false,
-        name: "Antigüedad",
-        options: ["Opción 1", "Opción 2", "Opción 3"]
-      }, {
-        value: false,
-        name: "Estado",
-        options: ["Opción 1", "Opción 2", "Opción 3"]
-      }]
-    };
+    return {};
+  },
+  computed: {
+    filtros: function filtros() {
+      var filtrosArray = [];
+
+      for (var i = 0; i < this.panels.length; i++) {
+        if (this.panels[i].selectOption) {
+          filtrosArray.push(this.panels[i].selectOption);
+        }
+      }
+
+      return filtrosArray;
+    }
   },
   methods: {
-    set: function set(op) {
-      this.filtros.push(op);
-    },
     unset: function unset(op) {
-      var i = this.filtros.indexOf(op);
-      this.filtros.splice(i, 1);
+      var find = this.panels.find(function (element) {
+        return element.selectOption == op;
+      });
+      var index = this.panels.indexOf(find);
+      this.panels[index].selectOption = null;
     }
   }
 });
@@ -4513,31 +4437,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "FiltroPublicacion",
+  props: ["panels"],
   data: function data() {
-    return {
-      panels: [{
-        value: false,
-        name: "operaciones",
-        options: ["Venta", "Alquiler", "Traspaso"],
-        selectOption: null
-      }, {
-        value: false,
-        name: "publicaciones",
-        options: ["Publicado", "Vendido", "Borrador"],
-        selectOption: null
-      }, {
-        value: false,
-        name: "borradores",
-        options: ["Opción 1", "Opción 2", "Opción 3"],
-        selectOption: null
-      }]
-    };
+    return {};
   },
   computed: {
     filtros: function filtros() {
@@ -7590,6 +7494,47 @@ __webpack_require__.r(__webpack_exports__);
         precio: "90,232",
         entrega: "Inmediata",
         condicion: "Preventa en planos"
+      }],
+      panels: [{
+        value: false,
+        name: "Tipo de Inmueble",
+        options: ["Departamento", "Casa", "Oficina"],
+        selectOption: null
+      }, {
+        value: false,
+        name: "Distrito / Ubicación",
+        options: ["San Isidro", "Miraflores", "Santiago de Surco", "La Molina"],
+        selectOption: null
+      }, {
+        value: false,
+        name: "Precio",
+        options: ["S/ 2500", "S/ 1500", "S/ 3550", "S/ 5400"],
+        selectOption: null
+      }, {
+        value: false,
+        name: "Dormitorios",
+        options: ["Dormitorios 1", "Dormitorios 2", "Dormitorios 3"],
+        selectOption: null
+      }, {
+        value: false,
+        name: "Area Total (m2)",
+        options: ["Area 1", "Area 2", "Area 3"],
+        selectOption: null
+      }, {
+        value: false,
+        name: "Cocheras",
+        options: ["Cocheras 1", "Cocheras 2", "Cocheras 3"],
+        selectOption: null
+      }, {
+        value: false,
+        name: "Antigüedad",
+        options: ["Antigüedad 1", "Antigüedad 2", "Antigüedad 3"],
+        selectOption: null
+      }, {
+        value: false,
+        name: "Estado",
+        options: ["Estado 1", "Estado 2", "Estado 3"],
+        selectOption: null
       }]
     };
   },
@@ -9629,14 +9574,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -9713,6 +9650,22 @@ __webpack_require__.r(__webpack_exports__);
         body: "Philiadelphia, Cherry Hill, DC205500 Modificación: 2020/09/05",
         boton: "cerrar publicación",
         form: {}
+      }],
+      panels: [{
+        value: false,
+        name: "operaciones",
+        options: ["Venta", "Alquiler", "Traspaso"],
+        selectOption: null
+      }, {
+        value: false,
+        name: "publicaciones",
+        options: ["Publicado", "Vendido", "Borrador"],
+        selectOption: null
+      }, {
+        value: false,
+        name: "borradores",
+        options: ["Opción 1", "Opción 2", "Opción 3"],
+        selectOption: null
       }]
     };
   },
@@ -31529,7 +31482,7 @@ var render = function() {
                     key: i,
                     on: {
                       click: function($event) {
-                        return _vm.set(op)
+                        panel.selectOption = op
                       }
                     }
                   },
@@ -36984,7 +36937,7 @@ var render = function() {
                   "div",
                   { staticClass: "filter-body" },
                   [
-                    _c("FiltrosMapa"),
+                    _c("FiltrosMapa", { attrs: { panels: _vm.panels } }),
                     _vm._v(" "),
                     _c(
                       "w-btn",
@@ -37033,7 +36986,7 @@ var render = function() {
                               )
                             ]),
                             _vm._v(" "),
-                            _c("FiltrosMapa")
+                            _c("FiltrosMapa", { attrs: { panels: _vm.panels } })
                           ],
                           2
                         )
@@ -40931,7 +40884,7 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _c("FiltroPublicacion"),
+                  _c("FiltroPublicacion", { attrs: { panels: _vm.panels } }),
                   _vm._v(" "),
                   _c(
                     "w-btn",
@@ -40969,7 +40922,7 @@ var render = function() {
                   "div",
                   { staticClass: "filter-body" },
                   [
-                    _c("FiltroPublicacion"),
+                    _c("FiltroPublicacion", { attrs: { panels: _vm.panels } }),
                     _vm._v(" "),
                     _c(
                       "w-btn",
@@ -64790,8 +64743,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\final\wlinii-laravel\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\final\wlinii-laravel\resources\css\main.css */"./resources/css/main.css");
+__webpack_require__(/*! C:\xampp\htdocs\final\wlinni-final\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\final\wlinni-final\resources\css\main.css */"./resources/css/main.css");
 
 
 /***/ })
